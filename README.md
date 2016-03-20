@@ -32,3 +32,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## To Test
 - offline capabilities
 - web app capabilities (add to homescreen)
+
+
+## To Do Later
+- Add info page to [personal site](http://johnchinjew.com/projects/letterfocus)
