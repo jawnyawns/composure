@@ -50,7 +50,7 @@ menu { display: block }
 ========================================================================================= */
 
 .writer {
-  font-size: .8rem;
+  font-size: .82rem;
   display: block;
   height: 100%;
   width: 100%;
@@ -91,20 +91,19 @@ menu { display: block }
 
 /* MEDIA QUERIES
 ========================================================================================= */
-@media screen and (min-width: 777px) {
+@media screen and (min-width: 510px) { html { font-size: 123% } }
+@media screen and (min-width: 780px) {
 
   .writer {
     padding: 7% 18% 18.5%;
     padding: calc(7% + 18px) calc(50% - 19.3rem);
   }
 
-  html { font-size: 120% }
-
 }
-@media screen and (min-width: 1200px) { html { font-size: 140% } }
+@media screen and (min-width: 1140px) { html { font-size: 141% } }
 @media print {
 
-  .menu { display: none !important }
+  /*.menu { display: none !important }*/
 
   html,
   body,

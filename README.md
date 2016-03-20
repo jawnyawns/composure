@@ -24,10 +24,8 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 ## Todo
 - hack cursor in
-- refactor font-sizes and queries... just the css basically
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
 - social metas
-- analytics
 - offline capabilities
 - web app capabilities
