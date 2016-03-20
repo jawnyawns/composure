@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html manifest="cache.appcache">
 <head>
-
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta charset="UTF-8">
 
   <!--
 
@@ -35,26 +32,40 @@
 
   -->
 
+
+
+  <!-- Basics
+  =========================================================== -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta charset="UTF-8">
   <title>Letter Focus</title>
   <meta name="description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
-
   <meta name="author" content="John Chin-Jew">
+
+
+
+  <!-- Mobile Metas
+  =========================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#F0EFEC">
+  <link rel="icon" sizes="192x192" href="img/favicon.gif">
 
+  <!-- CSS
+  =========================================================== -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="img/favicon.gif">
 
+  <!-- Social Metas
+  =========================================================== -->
   <meta name="twitter:card" content="#WriteWithFocus.">
   <meta name="twitter:site" content="@LetterFocus">
   <meta name="twitter:title" content="Letter Focus">
   <meta name="twitter:description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
   <meta name="twitter:creator" content="@LetterFocus">
   <meta name="twitter:image" content="http://letterfocus.com/img/card.jpg">
-
   <meta property="og:title" content="Letter Focus">
   <meta property="og:url" content="http://letterfocus.com">
   <meta property="og:image" content="http://letterfocus.com/img/card.jpg">
@@ -64,12 +75,20 @@
 </head>
 <body class="">
 
+
+
+  <!-- Page Layout
+  =========================================================== -->
   <!-- <menu id="menu" class="menu"></menu> -->
 
   <textarea id="writer" class="writer" placeholder="Psst, scroll up to show the menu!" autofocus></textarea>
 
   <!-- <div class="caret" id="caret"></div> -->
 
+
+
+  <!-- Scripts
+  =========================================================== -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="js/main.js"></script>
 
