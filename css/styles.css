@@ -108,6 +108,7 @@ menu { display: block }
 @media screen and (min-width: 1200px) {
 
   .writer {
+    padding: 7% 25% 18.5%;
     padding: calc(7% + 1rem) calc(50% - 20em);
   }
 
