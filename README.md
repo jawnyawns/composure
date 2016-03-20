@@ -17,7 +17,6 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## Todo
-- fix tabbing
 - hack cursor in
 - refactor font-sizes and queries... just the css basically
 - menu: hidden by css, only appears when js binds
