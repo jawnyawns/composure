@@ -26,6 +26,5 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - hack cursor in
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
-- social metas
 - offline capabilities
 - web app capabilities
