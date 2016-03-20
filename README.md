@@ -4,6 +4,7 @@ A beautiful, distraction free web writer built to help you [#WriteWithFocus](htt
 
 ## Updates
 Twitter is live: [@LetterFocus](http://twitter.com/letterfocus)
+
 Temporary site is live: [LF is coming!](http://bit.ly/LFocus)
 
 
