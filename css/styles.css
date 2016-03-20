@@ -102,8 +102,8 @@ menu { display: block }
   }
 
 }
-@media screen and (min-width: 1000px) { html { font-size: 141% } }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1150px) { html { font-size: 141% } }
+@media screen and (min-width: 1270px) {
 
   .writer {
     padding: 7% 25% 18.5%;
