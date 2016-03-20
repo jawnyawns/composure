@@ -3,20 +3,20 @@ A beautiful, distraction free web writer built to help you [#WriteWithFocus](htt
 
 
 ## About
-I got tired of ugly digital writing surfaces, and good options cost money... So I made this simple web app so people could enjoy the time they spend writing.
+Out of the flurry of ugly digital writing surfaces arose LETTER FOCUS, to save us all! So... I made this simple web writer so people like myself could enjoy the time they spend writing. There's a bit more to come, but Letter Focus is almost complete!
 
-Follow [@LetterFocus](http://twitter.com/letterfocus) & [me](http://twitter.com/johnchinjew) for updates!
+Follow [@LetterFocus](http://twitter.com/letterfocus) & [@johnchinjew](http://twitter.com/johnchinjew) for updates!
 
 
 ## Disclaimer
-This will be a monetized in some way, so be warned if you decide to participate.
+This will be monetized in some way, so be warned if you decide to participate.
 
 
 ## License
 Letter Focus and its materials, code, documentation, artwork, and intellectual property herein are all (c) 2016 John Chin-Jew. All rights reserved.
 
 
-## Goals
+## Todo
 - fix tabbing
 - hack cursor in
 - refactor font-sizes and queries... just the css basically
