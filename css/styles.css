@@ -50,17 +50,16 @@ menu { display: block }
 ========================================================================================= */
 
 .writer {
-  font-size: .82em;
   display: block;
   height: 100%;
   width: 100%;
-  padding: 9% 3%;
-  padding: calc(7% + .6rem) 3%;
   border: 0;
   outline: 0;
   resize: none;
-  background-color: #F0EFEC;
-  line-height: 1.5
+  padding: 8.5% 3%;
+  font-size: .82em;
+  line-height: 1.5;
+  background-color: #F0EFED;
 }
 
 .dark .writer {
@@ -92,34 +91,31 @@ menu { display: block }
 /* MEDIA QUERIES
 ========================================================================================= */
 @media screen and (min-width: 500px) { html { font-size: 123% } }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
 
   .writer {
     padding: 7% 18% 18.5%;
-    padding: calc(7% + 1rem) calc(50% - 18em);
+    padding: calc(7% + .9em) calc(50% - 18.3em);
   }
 
 }
-@media screen and (min-width: 1000px) {
-
-  html { font-size: 141% }
-
-}
+@media screen and (min-width: 1000px) { html { font-size: 141% } }
 @media screen and (min-width: 1200px) {
 
   .writer {
     padding: 7% 25% 18.5%;
-    padding: calc(7% + 1rem) calc(50% - 20em);
+    padding: calc(7% + .9em) calc(50% - 20em);
   }
 
 }
 @media print {
 
-  /*.menu { display: none !important }*/
+  .menu,
+  .caret { display: none !important }
 
   html,
   body,
-  #writer {
+  html > body > .writer {
     font-size: 11pt;
     background: transparent !important;
     color: #000 !important;
