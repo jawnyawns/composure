@@ -68,6 +68,16 @@ menu { display: block }
   color: #fff;
 }
 
+/*.caret {
+  display: inline-block;
+  background: #00B9FF;
+  height: 1.3rem;
+  width: .15rem;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+}*/
+
 /* UTILITY
 ========================================================================================= */
 
