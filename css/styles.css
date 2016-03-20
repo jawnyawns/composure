@@ -50,12 +50,12 @@ menu { display: block }
 ========================================================================================= */
 
 .writer {
-  font-size: .82rem;
+  font-size: .82em;
   display: block;
   height: 100%;
   width: 100%;
-  padding: 9% 5%;
-  padding: calc(7% + 18px) 5%;
+  padding: 9% 3%;
+  padding: calc(7% + .6rem) 3%;
   border: 0;
   outline: 0;
   resize: none;
@@ -91,16 +91,27 @@ menu { display: block }
 
 /* MEDIA QUERIES
 ========================================================================================= */
-@media screen and (min-width: 510px) { html { font-size: 123% } }
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 500px) { html { font-size: 123% } }
+@media screen and (min-width: 750px) {
 
   .writer {
     padding: 7% 18% 18.5%;
-    padding: calc(7% + 18px) calc(50% - 19.3rem);
+    padding: calc(7% + 1rem) calc(50% - 18em);
   }
 
 }
-@media screen and (min-width: 1140px) { html { font-size: 141% } }
+@media screen and (min-width: 1000px) {
+
+  html { font-size: 141% }
+
+}
+@media screen and (min-width: 1200px) {
+
+  .writer {
+    padding: calc(7% + 1rem) calc(50% - 20em);
+  }
+
+}
 @media print {
 
   /*.menu { display: none !important }*/
