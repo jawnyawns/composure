@@ -1,0 +1,108 @@
+/* BASE STYLES
+========================================================================================= */
+
+html {
+  box-sizing: border-box;
+
+  /* font setup */
+  font-family: "Roboto Mono", sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: subpixel-antialiased; /* for a bolder smoother font */
+  text-rendering: optimizeLegibility; /* for more detailed font ligatures */
+}
+
+*,
+*:before,
+*:after { box-sizing: inherit }
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* text selection */
+::-moz-selection { background-color: rgba(155, 155, 155, 0.285) }
+::selection { background-color: rgba(155, 155, 155, 0.285) }
+
+/* normalize elements */
+textarea {
+  overflow: auto;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+menu { display: block }
+
+/* CUSTOM STYLES
+========================================================================================= */
+
+.writer {
+  font-size: .8rem;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 9% 5%;
+  padding: calc(7% + 18px) 5%;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background-color: #F0EFEC;
+  line-height: 1.5
+}
+
+.dark .writer {
+  background-color: #2E2D29;
+  color: #fff;
+}
+
+/* UTILITY
+========================================================================================= */
+
+.hide-icon-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.remove { display: none !important }
+
+/* MEDIA QUERIES
+========================================================================================= */
+@media screen and (min-width: 777px) {
+
+  .writer {
+    padding: 7% 18% 18.5%;
+    padding: calc(7% + 18px) calc(50% - 19.3rem);
+  }
+
+  html { font-size: 120% }
+
+}
+@media screen and (min-width: 1200px) { html { font-size: 140% } }
+@media print {
+
+  .menu { display: none !important }
+
+  html,
+  body,
+  #writer {
+    font-size: 11pt;
+    background: transparent !important;
+    color: #000 !important;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+}
