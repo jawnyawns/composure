@@ -23,7 +23,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## To Do
-- hack cursor in
+- hack cursor in (link)[http://jsfiddle.net/aFPA7/173/]
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
 
@@ -35,6 +35,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## To Test
 - offline capabilities
 - web app capabilities (add to homescreen)
+- browser testing (ie10 and up)
 
 
 ## To Do Later
