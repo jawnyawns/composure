@@ -30,6 +30,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 ## Bugs
 - replace divs with brs
+- css is still too unpredictable
 
 
 ## To Test
