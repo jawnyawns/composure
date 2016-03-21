@@ -26,12 +26,34 @@ var writer = (function($) {
     paste(e);
   });
 
+  var ie = (typeof document.selection != "undefined" && document.selection.type != "Control") && true;
+  var w3 = (typeof window.getSelection != "undefined") && true;
+
+  function getCaretPosition(element) {
+      var caretOffset = 0;
+      if (w3) {
+          var range = window.getSelection().getRangeAt(0);
+          var preCaretRange = range.cloneRange();
+          preCaretRange.selectNodeContents(element);
+          preCaretRange.setEnd(range.endContainer, range.endOffset);
+          caretOffset = preCaretRange.toString().length;
+      } else if (ie) {
+          var textRange = document.selection.createRange();
+          var preCaretTextRange = document.body.createTextRange();
+          preCaretTextRange.moveToElementText(element);
+          preCaretTextRange.setEndPoint("EndToEnd", textRange);
+          caretOffset = preCaretTextRange.text.length;
+      }
+      return caretOffset;
+  }
+
   function maintainPadding() {
-      var pos = $writer.prop("selectionStart");
+      var pos = getCaretPosition($writer.get(0));
       var end = $writer.text().length;
-      console.log(pos);
-      console.log(end);
-      if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
+      if(pos == end) {
+        $(window).scrollTop($writer[0].scrollHeight);
+        console.log("no poop!");
+      }
   }
 
   function tab(e) {

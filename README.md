@@ -29,8 +29,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## Bugs
-- tabbing
-- maintainPadding
+- just weird stuff with firefox......
 
 
 ## To Test
