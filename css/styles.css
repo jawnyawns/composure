@@ -105,16 +105,16 @@ menu { display: block }
 
   .writer {
     padding: 7% 18% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 18.25em);
+    padding: calc(7% + .9em) calc(50% - 17.5em);
   }
 
 }
 @media screen and (min-width: 1150px) { html { font-size: 141% } }
-@media screen and (min-width: 1270px) {
+@media screen and (min-width: 1400px) {
 
   .writer {
     padding: 7% 25% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 19em);
+    padding: calc(7% + .9em) calc(50% - 19.5em);
   }
 
 }
