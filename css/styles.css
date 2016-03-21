@@ -37,6 +37,7 @@ a {
 
 /* normalize elements */
 textarea {
+  display: block;
   overflow: auto;
   color: inherit;
   font: inherit;
@@ -50,7 +51,6 @@ menu { display: block }
 /* CUSTOM STYLES
 =========================================================== */
 .writer {
-  display: block;
   height: 100%;
   width: 100%;
   border: 0;
