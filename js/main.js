@@ -28,20 +28,21 @@ var writer = (function($) {
 
   function maintainPadding() {
       var pos = $writer.prop("selectionStart");
-      var end = $writer.val().length;
+      var end = $writer.text().length;
+      console.log(pos);
+      console.log(end);
       if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
   }
 
   function warning() {
-    if($writer.val() !== "") return "Leaving this page will delete everything! Make sure you've kept a copy of your work!";
+    if($writer.text() !== "") return "Leaving this page will delete everything! Make sure you've kept a copy of your work!";
   }
 
   function tab(e) {
     if(e.keyCode == 9) {
       e.preventDefault();
-      var textWithTab = $writer.val() + "     "; // 5 spaces
-      $writer.val(textWithTab);
-      console.log(textWithTab);
+      var textWithTab = $writer.text() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; // 5 spaces
+      $writer.text(textWithTab);
     }
   }
 

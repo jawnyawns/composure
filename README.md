@@ -28,6 +28,11 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - host and buy domain
 
 
+## Bugs
+- tabbing
+- maintainPadding
+
+
 ## To Test
 - offline capabilities
 - web app capabilities (add to homescreen)
