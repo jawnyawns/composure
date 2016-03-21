@@ -44,11 +44,20 @@ menu { display: block }
   color: rgba(155, 155, 155, 0.9);
 }
 
+@-moz-document url-prefix() {
+  [contenteditable=true]:empty:before {
+    position: absolute;
+    top: 2.5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 
 
 /* CUSTOM STYLES
 =========================================================== */
 .writer {
+  position: relative;
   min-height: 100%;
   width: 100%;
   padding: 8.5% 3%;
@@ -57,6 +66,7 @@ menu { display: block }
   background-color: #F0EFED;
   overflow-y: scroll;
   white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .dark .writer {

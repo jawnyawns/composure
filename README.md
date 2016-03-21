@@ -29,7 +29,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## Bugs
-- just weird stuff with firefox......
+- none! (how is this even possible)
 
 
 ## To Test
