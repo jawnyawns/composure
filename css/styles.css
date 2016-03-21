@@ -36,30 +36,26 @@ a {
 ::selection { background-color: rgba(155, 155, 155, 0.285) }
 
 /* normalize elements */
-textarea {
-  display: block;
-  overflow: auto;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
-
 menu { display: block }
+
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block;
+  color: rgba(155, 155, 155, 0.9);
+}
 
 
 
 /* CUSTOM STYLES
 =========================================================== */
 .writer {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  border: 0;
-  outline: 0;
-  resize: none;
   padding: 8.5% 3%;
   font-size: .82em;
-  line-height: 1.5;
+  line-height: 1.63;
   background-color: #F0EFED;
+  overflow-y: scroll;
 }
 
 .dark .writer {
@@ -98,7 +94,7 @@ menu { display: block }
 
   .writer {
     padding: 7% 18% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 18.3em);
+    padding: calc(7% + .9em) calc(50% - 18.25em);
   }
 
 }
@@ -107,7 +103,7 @@ menu { display: block }
 
   .writer {
     padding: 7% 25% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 20em);
+    padding: calc(7% + .9em) calc(50% - 19em);
   }
 
 }

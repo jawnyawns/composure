@@ -19,6 +19,12 @@ var writer = (function($) {
   });
   $writer.on("keyup", maintainPadding);
   $(window).on("beforeunload", warning); // save work warning
+  $(window).on("load", function() {
+    $("[autofocus]").focus();
+  });
+  $writer.on("paste", function(e) {
+    paste(e);
+  });
 
   function maintainPadding() {
       var pos = $writer.prop("selectionStart");
@@ -37,6 +43,12 @@ var writer = (function($) {
       $writer.val(textWithTab);
       console.log(textWithTab);
     }
+  }
+
+  function paste(e) {
+    e.preventDefault();
+    var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+    document.execCommand("insertHTML", false, text);
   }
 
 })(jQuery);

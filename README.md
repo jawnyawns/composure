@@ -26,7 +26,6 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - hack cursor in
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
-- FIX: firefox padding top and bottom is weiiiird
 
 
 ## To Test
