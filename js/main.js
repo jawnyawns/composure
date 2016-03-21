@@ -27,11 +27,11 @@ var writer = (function($) {
   });
 
   function maintainPadding() {
-      // var pos = $writer.prop("selectionStart");
-      // var end = $writer.text().length;
-      // console.log(pos);
-      // console.log(end);
-      // if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
+      var pos = $writer.prop("selectionStart");
+      var end = $writer.text().length;
+      console.log(pos);
+      console.log(end);
+      if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
   }
 
   function tab(e) {

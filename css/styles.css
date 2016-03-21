@@ -56,6 +56,7 @@ menu { display: block }
   line-height: 1.63;
   background-color: #F0EFED;
   overflow-y: scroll;
+  white-space: pre-wrap;
 }
 
 .dark .writer {
