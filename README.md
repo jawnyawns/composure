@@ -26,6 +26,8 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - hack cursor in (link)[http://jsfiddle.net/aFPA7/173/]
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
+- disable app if no js
+- consider textarea ....
 
 
 ## Bugs
@@ -37,6 +39,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - offline capabilities
 - web app capabilities (add to homescreen)
 - browser testing (ie10 and up)
+- how do scroll bars affect things.....
 
 
 ## To Do Later
