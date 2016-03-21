@@ -29,7 +29,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## Bugs
-- none! (how is this even possible)
+- replace divs with brs
 
 
 ## To Test
