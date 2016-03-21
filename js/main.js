@@ -27,22 +27,17 @@ var writer = (function($) {
   });
 
   function maintainPadding() {
-      var pos = $writer.prop("selectionStart");
-      var end = $writer.text().length;
-      console.log(pos);
-      console.log(end);
-      if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
-  }
-
-  function warning() {
-    if($writer.text() !== "") return "Leaving this page will delete everything! Make sure you've kept a copy of your work!";
+      // var pos = $writer.prop("selectionStart");
+      // var end = $writer.text().length;
+      // console.log(pos);
+      // console.log(end);
+      // if(pos == end) $writer.scrollTop($writer[0].scrollHeight)
   }
 
   function tab(e) {
-    if(e.keyCode == 9) {
+    if(e.keyCode === 9) {
       e.preventDefault();
-      var textWithTab = $writer.text() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; // 5 spaces
-      $writer.text(textWithTab);
+      document.execCommand("InsertHTML", false, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
     }
   }
 
@@ -50,6 +45,10 @@ var writer = (function($) {
     e.preventDefault();
     var text = (e.originalEvent || e).clipboardData.getData('text/plain');
     document.execCommand("insertHTML", false, text);
+  }
+
+  function warning() {
+    if($writer.text() !== "") return "Leaving this page will delete everything! Make sure you've kept a copy of your work!";
   }
 
 })(jQuery);
