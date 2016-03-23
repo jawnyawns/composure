@@ -4,7 +4,8 @@ html {
   box-sizing: border-box;
 
   /* font setup */
-  font-family: "Roboto Mono", sans-serif;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: subpixel-antialiased; /* for a bolder smoother font */
@@ -23,6 +24,7 @@ body {
 
 body {
   margin: 0;
+  /*position: relative;*/
 }
 
 a {
@@ -44,6 +46,8 @@ menu { display: block }
   color: rgba(155, 155, 155, 0.9);
 }
 
+
+/* weird firefox thing */
 @-moz-document url-prefix() {
   [contenteditable=true]:empty:before {
     position: absolute;
@@ -53,10 +57,17 @@ menu { display: block }
   }
 }
 
+::-webkit-input-placeholder{
+    text-shadow: none;
+    -webkit-text-fill-color: initial;
+}
+
+
 
 /* CUSTOM STYLES
 =========================================================== */
 .writer {
+  /*display: none;  for js (change js to use jquery .show())*/
   outline: 0;
   position: relative;
   min-height: 100%;
@@ -64,10 +75,11 @@ menu { display: block }
   padding: 7% 3.33%;
   font-size: .82em;
   line-height: 1.63;
-  background-color: #F0EFED;
-  overflow-y: scroll;
+  background-color: #F3F2F0;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: inherit;
+  font: inherit;
 }
 
 .dark .writer {
@@ -83,6 +95,65 @@ menu { display: block }
   position: absolute;
   left: 15%;
   top: 15%;
+}*/
+
+/* style webkit cursor (partial support) *//*
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .writer {
+    color: #09E; /* caret color *//*
+    text-shadow: 0px 0px 0px #000; /* text color *//*
+    -webkit-text-fill-color: transparent;
+  }
+  .dark .writer {
+    color: #00B0FF;
+    text-shadow: 0px 0px 0px #fff;
+  }
+}
+
+.menu {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: 200ms all;
+          transition: 200ms all;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background: #888;
+  color: #FFF;
+  opacity: .85;
+}
+
+.menu .w-w {
+  max-width: 630px; /* matches with min gutter in js + gutter*//*
+  margin: 0 auto;
+  padding: 4px 15px; /* matches with min gutter in js *//*
+  font-size: .735em;
+  text-align: center;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  overflow-x: scroll;
+}
+
+.w-w a {
+  margin-right: 3px;
+  cursor: pointer
+}
+
+.show-menu .menu {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }*/
 
 
