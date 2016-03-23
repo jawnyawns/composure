@@ -120,6 +120,11 @@ var writer = (function($) {
     if($writer.text() !== "") return "Leaving this page will delete everything! Make sure you've kept a copy of your work!";
   }
 
+  // api
+  return {
+    updateDimensions: updateDimensions
+  }
+
 })(jQuery);
 
 var menu = (function($) {
@@ -210,7 +215,7 @@ var menu = (function($) {
 
   // api
   return {
-    hideMenu: hideMenu
+    
   }
 
 })(jQuery);
