@@ -25,7 +25,6 @@ var writer = (function($) {
     }, 200);
   });
   $writer.on("keydown", function(e) {
-    scrollDownMaybe();
     insertTab(e);
     insertReturn(e);
     menu.hideMenu();
@@ -131,21 +130,21 @@ var menu = (function($) {
   var $writer = $("#writer");
   var $menu = $("#menu div");
   var $themeBtn = $menu.find(":nth-child(1)");
-
+  var $fullscreenBtn = $menu.find(":nth-child(2)");
   var $printBtn = $menu.find(":nth-child(3)");
   var $exportBtn = $menu.find(":nth-child(4)");
   var $emailBtn = $menu.find(":nth-child(5)");
 
   // vars
   var lastSt = 0;
-  var delta = 1/$window.height(); // 1% of height
+  var delta = .5/$window.height(); // 1% of height
 
   // events
   $window.on("scroll", function() {
     showMenuMaybe();
   });
   $themeBtn.on("click", toggleTheme);
-
+  $fullscreenBtn.on("click", toggleFullscreen);
   $printBtn.on("click", printWork);
   $exportBtn.on("click", exportWork);
   $emailBtn.on("click", sendWork);
@@ -171,6 +170,16 @@ var menu = (function($) {
     $body.toggleClass("dark");
   }
 
+  function toggleFullscreen() {
+    try {
+      if (screenfull.enabled) screenfull.toggle();
+      else alert("Press F11 or ^⌘F to toggle Fullscreen");
+    }
+    catch(err) {
+      alert("An error occurred, to use Fullscreen please reload the page.");
+    }
+  }
+
   function printWork() {
     window.print();
   }
@@ -183,7 +192,7 @@ var menu = (function($) {
       download(str, "LF-download.txt", "text/plain");
     }
     catch(err) {
-      alert("An error occurred, please reload the page.");
+      alert("An error occurred, to Export work please reload the page.");
     }
   }
 

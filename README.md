@@ -25,8 +25,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## To Do Now
 - line breaks......
 - dimensions... (inspiration)[https://goo.gl/l5fcbn]
-  - hack padding, but deal with weird box-sizing in js
-  - rework css queries (inspiration)[https://goo.gl/l5fcbn] *May also apply to js*
+  - rework css queries (inspiration)[https://goo.gl/l5fcbn]
 - Keep cleaning code up
 - add menu functionality
 
@@ -41,6 +40,8 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## Bugs *in order of importance*
 - ff glitch, left align with pseudo elements
 - height of cursor in text area changes when return is hit
+- when holding enter with text above and below
+- safari fullscreen disable typing
 
 
 ## To Test
