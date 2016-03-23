@@ -4,7 +4,8 @@ html {
   box-sizing: border-box;
 
   /* font setup */
-  font-family: "Roboto Mono", sans-serif;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: subpixel-antialiased; /* for a bolder smoother font */
@@ -15,14 +16,9 @@ html {
 *:before,
 *:after { box-sizing: inherit }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
 body {
   margin: 0;
+  position: relative;
 }
 
 a {
@@ -31,12 +27,8 @@ a {
   color: inherit;
 }
 
-/* text selection */
 ::-moz-selection { background-color: rgba(155, 155, 155, 0.285) }
 ::selection { background-color: rgba(155, 155, 155, 0.285) }
-
-/* normalize elements */
-menu { display: block }
 
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
@@ -44,30 +36,34 @@ menu { display: block }
   color: rgba(155, 155, 155, 0.9);
 }
 
-@-moz-document url-prefix() {
-  [contenteditable=true]:empty:before {
-    position: absolute;
-    top: 2.5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+::-webkit-input-placeholder{
+    text-shadow: none;
+    -webkit-text-fill-color: initial;
 }
 
 
 /* CUSTOM STYLES
 =========================================================== */
 .writer {
-  outline: 0;
+  box-sizing: content-box; /* thanks a lot firefox... */
+  display: block;
+  display: none;
+  min-height: 1px;
+  margin: 0;
   position: relative;
-  min-height: 100%;
-  width: 100%;
-  padding: 7% 3.33%;
+  color: inherit;
+  font: inherit;
+  outline: 0;
+  border: 0;
+  resize: none;
   font-size: .82em;
   line-height: 1.63;
-  background-color: #F0EFED;
+  background-color: #F3F2F0;
   overflow-y: scroll;
+  overflow-x: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: #000;
 }
 
 .dark .writer {
@@ -75,15 +71,64 @@ menu { display: block }
   color: #fff;
 }
 
-/*.caret {
-  display: inline-block;
-  background: #00B9FF;
-  height: 1.3rem;
-  width: .15rem;
-  position: absolute;
-  left: 15%;
-  top: 15%;
-}*/
+/* style webkit cursor (partial support) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .writer {
+    color: #09E; /* caret color */
+    text-shadow: 0px 0px 0px #000; /* text color */
+    -webkit-text-fill-color: transparent;
+  }
+  .dark .writer {
+    color: #00B0FF;
+    text-shadow: 0px 0px 0px #fff;
+  }
+}
+
+.menu {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: 200ms all;
+          transition: 200ms all;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background: #888;
+  color: #FFF;
+  opacity: .85;
+}
+
+.menu .w-w {
+  max-width: 630px; /* matches with min gutter in js + gutter*/
+  margin: 0 auto;
+  padding: 4px 15px; /* matches with min gutter in js */
+  font-size: .735em;
+  text-align: center;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  overflow-x: scroll;
+}
+
+.w-w a {
+  margin-right: 3px;
+  cursor: pointer
+}
+
+.show-menu .menu {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
 
 
 
@@ -102,19 +147,10 @@ menu { display: block }
 /* MEDIA QUERIES
 =========================================================== */
 @media screen and (min-width: 500px) { html { font-size: 123% } }
-@media screen and (min-width: 777px) {
-
-  .writer {
-    padding: 7% 18% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 18em);
-  }
-
-}
 @media screen and (min-width: 1180px) { html { font-size: 141% } }
 @media print {
 
-  .menu,
-  .caret { display: none !important }
+  .menu { display: none !important }
 
   html,
   body,

@@ -23,16 +23,21 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## To Do
-- hack cursor in (link)[http://jsfiddle.net/aFPA7/173/]
 - menu: hidden by css, only appears on js scroll
 - host and buy domain
-- disable app if no js
-- consider textarea ....
+- code refactor
 
 
 ## Bugs
-- replace divs with brs
-- css is still too unpredictable
+- css is still too unpredictable and ugly (link)[https://www.google.com/search?q=iawriter&safe=strict&espv=2&biw=1077&bih=730&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjl7s3wltPLAhVU12MKHRnmAQYQ_AUIDCgA#imgrc=GVfv3IrZw3y-LM%3A]
+- new name?
+- ff menu doesnt work
+
+
+## Minor Bugs
+- FF autofocus
+- height of cursor in text area changes when return is hit
+- cursor color
 
 
 ## To Test
@@ -40,6 +45,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - web app capabilities (add to homescreen)
 - browser testing (ie10 and up)
 - how do scroll bars affect things.....
+- create js unit testing
 
 
 ## To Do Later
