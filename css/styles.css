@@ -18,10 +18,15 @@ body {
   position: relative;
 }
 
+.ready {
+  background: #484743;
+}
+
 a {
   background-color: transparent;
   text-decoration: none;
   color: inherit;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* remove link highlight on mobile tap */
 }
 
 ::-moz-selection { background-color: rgba(155, 155, 155, 0.285) }
@@ -98,7 +103,11 @@ a {
 
 .inner-menu a {
   margin-right: 10px;
-  cursor: pointer
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .inner-menu:lastchild {
