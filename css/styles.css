@@ -78,11 +78,11 @@ a {
   z-index: 1;
   background: #484743;
   color: #FFF;
+  padding: 4px 15px; /* matches with min gutter in js         < -------------working--------------- */
 }
 
 .menu .inner-menu {
-  max-width: 630px; /* matches with min gutter in js + gutter < -------------working--------------- */
-  padding: 4px 15px; /* matches with min gutter in js         < -------------working--------------- */
+  max-width: 600px; /* matches with min gutter in js + gutter < -------------working--------------- */
   margin: 0 auto;
   font-size: .75rem;
   text-align: center;
@@ -97,8 +97,12 @@ a {
 }
 
 .inner-menu a {
-  margin-right: 3px;
+  margin-right: 10px;
   cursor: pointer
+}
+
+.inner-menu:lastchild {
+  margin: 0;
 }
 
 .show-menu .menu {
@@ -118,6 +122,6 @@ a {
     font-size: 11pt !important;
     background: transparent !important;
     color: #000 !important;
-    min-height: 100% !important; 
+    min-height: 100% !important;
   }
 }
