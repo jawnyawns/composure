@@ -54,7 +54,7 @@
   <p id="error" style="color:#AAA;font-size:15px;padding:15px;max-width:555px">Something isn't quite right. Make sure you are using a modern, up-to-date, JavaScript enabled browser; then try reloading the page.</p>
 
   <div id="menu" class="menu">
-    <div class="inner-menu">
+    <div class="inner-menu" unselectable="on">
       <a title="Change theme">Theme</a>
       <a title="Toggle fullscreen mode">Fullscreen</a>
       <a title="Print your work">Print</a>
@@ -67,9 +67,10 @@
   <div contenteditable="true" id="writer" class="writer" placeholder="Psst, scroll up to see the menu!" autofocus></div>
 
   <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-  <script src="js/download.js" async></script>
   <script src="js/main.js" async></script>
+  <script src="js/download.js" async></script>
   <script>//TODO: Replace 'UA-XXXX-Y' with your property ID//!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-XXXX-Y","auto"),ga("send","pageview");</script>
+  <script>document.addEventListener("touchstart", function(){}, true); // enable styling of link highlight on mobile tap</script>
 
 </body>
 </html>
