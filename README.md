@@ -19,22 +19,27 @@ This will be monetized in some way, so be warned if you decide to participate.
 
 
 ## License
-Letter Focus and its materials, code, documentation, artwork, and intellectual property herein are all (c) 2016 John Chin-Jew. All rights reserved.
+Letter Focus and its materials, code, documentation, artwork, and intellectual property herein are all (c) 2016 John Chin-Jew. All rights reserved
 
 
-## To Do
-- hack cursor in *css* vs *js hack*
+## To Do Now
+- line breaks......
+- dimensions... (inspiration)[https://goo.gl/l5fcbn]
+  - hack padding, but deal with weird box-sizing in js
+  - rework css queries (inspiration)[https://goo.gl/l5fcbn] *May also apply to js*
+- Keep cleaning code up
+- add menu functionality
+
+
+## To Do Later
 - host and buy domain
-- disable app if no js
-- consider textarea ....
-- menu: needs a rethink...
+- create first release
+- Add info page to [personal site](http://johnchinjew.com/projects/letterfocus)
 
 
-## Bugs
-- css is still too unpredictable and ugly (link)[https://www.google.com/search?q=iawriter&safe=strict&espv=2&biw=1077&bih=730&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjl7s3wltPLAhVU12MKHRnmAQYQ_AUIDCgA#imgrc=GVfv3IrZw3y-LM%3A] *May also apply to js*
-- height of cursor in text area changes when return is hit
-- overall code refactor
+## Bugs *in order of importance*
 - ff glitch, left align with pseudo elements
+- height of cursor in text area changes when return is hit
 
 
 ## To Test
@@ -42,8 +47,4 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - web app capabilities (add to homescreen)
 - browser testing (ie10 and up)
 - how do scroll bars affect things.....
-- create js unit testing
-
-
-## To Do Later
-- Add info page to [personal site](http://johnchinjew.com/projects/letterfocus)
+- unit test

@@ -1,51 +1,31 @@
 <!DOCTYPE html>
 <html manifest="cache.appcache">
-<head>
+<head><!--
 
-  <!--
+           .   `smNdy+-
+        :ym.  :NMMMMMMMm:
+       :dMMs  +MMMMMMMMMMs
+      sMMMMo`yMMMMMMMMMMN-
+     :MMMMMMNMMMMMMMMMNy-
+     oMMMMMMMMMdyso+/-
+     oMMMMMMMMMy:.``.`
+  ./  +MMMMMMMMMMMMMN+`
+  +M/ :MMMMMMMMMMms:
+  +MM+`MMMMm/:-.`     (c) Letter Focus | @LetterFocus | #WriteWithFocus
+  `NMMdMMMMMms/:.
+    :NMMMMMMMMMMs`    Letter Focus and its materials, code, documentation, artwork,
+     /MMNNmmdho.      and intellectual property herein are all (c) 2016 John Chin-Jew.
+     hMd`             All rights reserved.
+     :MM-
+     yMs              @johnchinjew | johnchinjew.com | hi@johnchinjew.com
+     yd`
 
-                     .   `smNdy+-
-                  :ym.  :NMMMMMMMm:
-                 :dMMs  +MMMMMMMMMMs
-                sMMMMo`yMMMMMMMMMMN-
-               :MMMMMMNMMMMMMMMMNy-
-               oMMMMMMMMMdyso+/-
-               oMMMMMMMMMy:.``.`
-            ./  +MMMMMMMMMMMMMN+`
-            +M/ :MMMMMMMMMMms:
-            +MM+`MMMMm/:-.`
-            `NMMdMMMMMms/:.
-              :NMMMMMMMMMMs`       ##      #######
-               /MMNNmmdho.         ##      ##
-               hMd`                ##      ######
-               :MM-                ##      ##
-               yMs                 ######  ##
-               yd`
-
-    (c) Letter Focus | @LetterFocus | #WriteWithFocus
-
-    Letter Focus and its materials, code, documentation, artwork,
-    and intellectual property herein are all (c) 2016 John Chin-Jew.
-    All rights reserved.
-
-    @johnchinjew | johnchinjew.com | hi@johnchinjew.com
-
-  -->
-
-
-
-  <!-- Basics
-  =========================================================== -->
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  --><meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta charset="UTF-8">
   <title>Letter Focus</title>
   <meta name="description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
   <meta name="author" content="John Chin-Jew">
 
-
-
-  <!-- Mobile Metas
-  =========================================================== -->
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,60 +33,42 @@
   <meta name="theme-color" content="#F3F2F0">
   <link rel="icon" sizes="192x192" href="img/favicon.gif">
 
-
-
-  <!-- CSS
-  =========================================================== -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:500">
   <link rel="stylesheet" href="css/styles.css">
 
-
-
-  <!-- Social Metas
-  =========================================================== -->
-  <meta name="twitter:card" content="#WriteWithFocus.">
+  <meta name="twitter:card" content="Write with focus.">
   <meta name="twitter:site" content="@LetterFocus">
   <meta name="twitter:title" content="Letter Focus">
-  <meta name="twitter:description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
+  <meta name="twitter:description" content="A beautiful, distraction free web writer built to help you #WriteWithFocus.">
   <meta name="twitter:creator" content="@LetterFocus">
   <meta name="twitter:image" content="http://letterfocus.com/img/card.jpg">
   <meta property="og:title" content="Letter Focus">
   <meta property="og:url" content="http://letterfocus.com">
   <meta property="og:image" content="http://letterfocus.com/img/card.jpg">
-  <meta property="og:description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
+  <meta property="og:description" content="A beautiful, distraction free web writer built to help you #WriteWithFocus.">
   <meta property="og:site_name" content="Letter Focus">
 
 </head>
-<body class="">
+<body class=" ">
 
+  <p id="error" style="color:#AAA;font-size:15px;padding:15px;max-width:555px">Something isn't quite right. Make sure you are using a modern, up-to-date, JavaScript enabled browser; then try reloading the page.</p>
 
-
-  <!-- Page Layout
-  =========================================================== -->
-  <!-- <menu id="menu" class="menu">
-    <div class="w-w">
-      <a>Theme</a>
-      <a>Fullscreen</a>
-      <a>Print</a>
-      <a>Export</a>
-      <a>Send</a>
-      <a>Info</a>
+  <div id="menu" class="menu">
+    <div class="inner-menu">
+      <a title="Change theme">Theme</a>
+      <a title="Toggle fullscreen mode">Fullscreen</a>
+      <a title="Print your work">Print</a>
+      <a title="Download your work">Export</a>
+      <a title="Email your work to yourself or others">Send</a>
+      <a title="Learn more about Letter Focus">Info</a>
     </div>
-  </menu> -->
+  </div>
 
   <div contenteditable="true" id="writer" class="writer" placeholder="Psst, scroll up to show the menu!" autofocus></div>
 
-
-
-  <!-- Scripts
-  =========================================================== -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
-
-  <!--<script>
-    // TODO: Replace 'UA-XXXX-Y' with your property ID
-    !function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-XXXX-Y","auto"),ga("send","pageview");
-  </script>-->
+  <script>//TODO: Replace 'UA-XXXX-Y' with your property ID//!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-XXXX-Y","auto"),ga("send","pageview");</script>
 
 </body>
 </html>

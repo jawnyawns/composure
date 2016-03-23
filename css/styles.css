@@ -1,30 +1,24 @@
-/* BASE STYLES
-=========================================================== */
 html {
   box-sizing: border-box;
 
-  /* font setup */
   font-family: "Roboto Mono", monospace;
-  font-weight: 500;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: subpixel-antialiased; /* for a bolder smoother font */
-  text-rendering: optimizeLegibility; /* for more detailed font ligatures */
+
+  -webkit-font-smoothing: subpixel-antialiased; /* bolder smoother */
+  text-rendering: optimizeLegibility; /* detailed ligatures */
 }
 
-*,
-*:before,
-*:after { box-sizing: inherit }
+*, *:before, *:after { box-sizing: inherit }
 
 html,
 body {
   height: 100%;
-  width: 100%;
 }
 
 body {
   margin: 0;
-  /*position: relative;*/
+  position: relative;
 }
 
 a {
@@ -33,53 +27,28 @@ a {
   color: inherit;
 }
 
-/* text selection */
 ::-moz-selection { background-color: rgba(155, 155, 155, 0.285) }
 ::selection { background-color: rgba(155, 155, 155, 0.285) }
-
-/* normalize elements */
-menu { display: block }
 
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   display: block;
   color: rgba(155, 155, 155, 0.9);
+
+  /* normalize webkit browsers when hacking caret */
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
 }
 
-
-/* weird firefox thing */
-@-moz-document url-prefix() {
-  [contenteditable=true]:empty:before {
-    position: absolute;
-    top: 2.5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-::-webkit-input-placeholder{
-    text-shadow: none;
-    -webkit-text-fill-color: initial;
-}
-
-
-
-/* CUSTOM STYLES
-=========================================================== */
 .writer {
-  /*display: none;  for js (change js to use jquery .show())*/
-  outline: 0;
+  display: none; /* display block if js */
+  min-height: 101%; /* allows js to reveal menu */
   position: relative;
-  min-height: 100%;
-  width: 100%;
-  padding: 7% 3.33%;
-  font-size: .82em;
-  line-height: 1.63;
-  background-color: #F3F2F0;
+  outline: 0;
   white-space: pre-wrap;
   word-wrap: break-word;
-  color: inherit;
-  font: inherit;
+  line-height: 1.6;
+  background-color: #F3F2F0;
 }
 
 .dark .writer {
@@ -87,66 +56,50 @@ menu { display: block }
   color: #fff;
 }
 
-/*.caret {
-  display: inline-block;
-  background: #00B9FF;
-  height: 1.3rem;
-  width: .15rem;
-  position: absolute;
-  left: 15%;
-  top: 15%;
-}*/
-
-/* style webkit cursor (partial support) *//*
+/* hack webkit caret */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   .writer {
-    color: #09E; /* caret color *//*
-    text-shadow: 0px 0px 0px #000; /* text color *//*
     -webkit-text-fill-color: transparent;
+    color: #4BE; /* caret color */
+    text-shadow: 0 0 0 #000; /* text color */
   }
   .dark .writer {
-    color: #00B0FF;
-    text-shadow: 0px 0px 0px #fff;
+    color: #4BE;
+    text-shadow: 0 0 0 #FFF;
   }
 }
 
 .menu {
-  display: block;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
-  -webkit-transition: 200ms all;
-          transition: 200ms all;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  -webkit-transition: transform 200ms;
+          transition: transform 200ms;
   z-index: 1;
-  background: #888;
+  background: #484743;
   color: #FFF;
-  opacity: .85;
 }
 
-.menu .w-w {
-  max-width: 630px; /* matches with min gutter in js + gutter*//*
+.menu .inner-menu {
+  max-width: 630px; /* matches with min gutter in js + gutter < -------------working--------------- */
+  padding: 4px 15px; /* matches with min gutter in js         < -------------working--------------- */
   margin: 0 auto;
-  padding: 4px 15px; /* matches with min gutter in js *//*
-  font-size: .735em;
+  font-size: .75rem;
   text-align: center;
   -ms-box-orient: horizontal;
   display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
   display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-justify-content: space-between;
   justify-content: space-between;
   overflow-x: scroll;
 }
 
-.w-w a {
+.inner-menu a {
   margin-right: 3px;
   cursor: pointer
 }
@@ -154,46 +107,19 @@ menu { display: block }
 .show-menu .menu {
   -webkit-transform: translateY(0);
           transform: translateY(0);
-}*/
-
-
-
-/* UTILITY
-=========================================================== */
-.hide-icon-text {
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
-.remove { display: none !important }
+@media screen and (min-width: 1px)    { html { font-size: 100%; } } /* < -------------working--------------- */
+@media screen and (min-width: 500px)  { html { font-size: 110%; } } /* < -------------working--------------- */
+@media screen and (min-width: 1200px) { html { font-size: 120%; } } /* < -------------working--------------- */
 
-
-
-/* MEDIA QUERIES
-=========================================================== */
-@media screen and (min-width: 500px) { html { font-size: 123% } }
-@media screen and (min-width: 777px) {
-
-  .writer {
-    padding: 7% 18% 18.5%;
-    padding: calc(7% + .9em) calc(50% - 18em);
-  }
-
-}
-@media screen and (min-width: 1180px) { html { font-size: 141% } }
 @media print {
-
-  .menu,
-  .caret { display: none !important }
-
+  .menu { display: none !important; }
   html,
   body,
   html > body > .writer {
-    font-size: 11pt;
+    font-size: 11pt !important;
     background: transparent !important;
     color: #000 !important;
-    -webkit-font-smoothing: subpixel-antialiased;
   }
-
 }
