@@ -1,29 +1,29 @@
 var writer = (function($) {
 
-  // vars
-  var ie = (typeof document.selection != "undefined" && document.selection.type != "Control") && true;
-  var w3 = (typeof window.getSelection != "undefined") && true;
-  // var resizeTimer;
-
   // cache
   var $window = $(window);
   var $writer = $("#writer");
   var $body = $("body");
 
+  // vars
+  var ie = (typeof document.selection != "undefined" && document.selection.type != "Control") && true;
+  var w3 = (typeof window.getSelection != "undefined") && true;
+  var resizeTimer;
+
   // events
   $window.one("load", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
     autoFocus();
-    // updateDimensions(600, 6.5, 15); // dimensions for any size screen
-    scrollDownMaybe(); // scroll down so user can scroll up to reveal menu
+    updateDimensions(600, 6.5, 15); // dimensions
+    scrollDownMaybe(); // scrolls down so user can scroll up to reveal menu
   });
   $window.on("beforeunload", warning); // warning to keep work
-  // $(window).resize(function() {
-  //   clearTimeout(resizeTimer);
-  //   var resizeTimer = setTimeout(function() {
-  //     updateDimensions(600, 7.5, 15); // dimensions for any size screen
-  //   }, 200);
-  // });
+  $(window).resize(function() {
+    clearTimeout(resizeTimer);
+    var resizeTimer = setTimeout(function() {
+      updateDimensions(600, 7.5, 15); // dimensions
+    }, 200);
+  });
   $writer.on("keydown", function(e) {
     scrollDownMaybe();
     insertTab(e);
@@ -97,24 +97,20 @@ var writer = (function($) {
     document.execCommand("insertHTML", false, clipboardText);
   }
 
-  // function updateDimensions(MaxWidthInPx, vertPaddingInPer, minPaddingInPx) {
-  //   var x = ($(window).width() - MaxWidthInPx) / 2 ;
-  //   if (x < minPaddingInPx) x = minPaddingInPx;
-  //   var y = vertPaddingInPer;
-  //   var adjustedHeight = $(window).height() - (($(window).width() * (y / 100)) * 2);
-  //   var adjustedWidth = MaxWidthInPx;
-  //   if ($(window).width() < MaxWidthInPx) {
-  //     adjustedWidth = $(window).width() - (x*2);
-  //   }
-  //   $writer.css({
-  //     "padding-top" : y + "%",
-  //     "padding-right" : x,
-  //     "padding-bottom" : y + "%",
-  //     "padding-left" : x,
-  //     "width" : adjustedWidth,
-  //     "height" : adjustedHeight
-  //   });
-  // }
+  function updateDimensions(MaxWidthInPx, vertPaddingInPer, minHorizPaddingInPx) {
+    var x = ($(window).width() - MaxWidthInPx) / 2 ;
+    if (x < minHorizPaddingInPx) x = minHorizPaddingInPx;
+    var y = vertPaddingInPer;
+    if ($(window).width() < MaxWidthInPx) {
+      adjustedWidth = $(window).width() - (x*2);
+    }
+    $writer.css({
+      "padding-top" : y + "%",
+      "padding-right" : x,
+      "padding-bottom" : y + "%",
+      "padding-left" : x
+    });
+  }
 
   function trulyEmptyMaybe() {
     if($writer.html() == "" || $writer.html() == "<br>" || $writer.html() == "<br></br>" || $writer.html() == null) $writer.html(null);
@@ -128,15 +124,15 @@ var writer = (function($) {
 
 var menu = (function($) {
 
-  // vars
-  var lastScrollTop;
-  var delta;
-
   // cache
   var $writer = $("#writer");
   var $menu = $("#menu");
   var $window = $(window);
   var $body = $("body");
+
+  // vars
+  var lastSt = 0;
+  var delta = 1/$window.height(); // 1% of height
 
   // events
   $window.scroll(function() {
@@ -144,8 +140,6 @@ var menu = (function($) {
   });
 
   // funcs
-  var lastSt = 0;
-  var delta = 1/$window.height(); // 1% of height
   function showMenuMaybe() {
     var st = $(this).scrollTop();
     if (Math.abs(lastSt - st) < delta) return;
