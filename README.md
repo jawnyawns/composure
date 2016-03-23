@@ -35,6 +35,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - host and buy domain
 - first release: with completion of "to do now"
 - Add info page (donations, ads, etc)
+- error handling
 
 
 ## Bugs *in order of importance*
@@ -48,3 +49,4 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - browser testing (ie10 and up)
 - how do scroll bars affect things.....
 - unit test
+- link highlight

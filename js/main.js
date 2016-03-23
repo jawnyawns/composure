@@ -40,6 +40,7 @@ var writer = (function($) {
   function jsEnabled() {
     $writer.show();
     $("#error").hide();
+    $body.addClass("ready");
   }
 
   function autoFocus() {
@@ -178,7 +179,12 @@ var menu = (function($) {
     var str = $writer.html();
     str = str.replace(/<br>/g, "\n");
     str = str.replace(/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/g, "%20%20%20%20%20");
-    download(str, "LF-download.txt", "text/plain");
+    try {
+      download(str, "LF-download.txt", "text/plain");
+    }
+    catch(err) {
+      alert("An error occurred, please reload the page.");
+    }
   }
 
   function sendWork() {
