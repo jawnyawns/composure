@@ -1,9 +1,8 @@
 CACHE MANIFEST
-# v0.1.0
+# v0.1.2
 
-CACHE:
-index.html
 css/styles.css
 img/card.jpg
 img/favicon.gif
 js/main.js
+https://code.jquery.com/jquery-2.2.2.min.js
