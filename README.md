@@ -23,21 +23,17 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## To Do
-- menu: hidden by css, only appears on js scroll
+- menu: needs a rethink....
 - host and buy domain
 - code refactor
 
 
 ## Bugs
 - css is still too unpredictable and ugly (link)[https://www.google.com/search?q=iawriter&safe=strict&espv=2&biw=1077&bih=730&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjl7s3wltPLAhVU12MKHRnmAQYQ_AUIDCgA#imgrc=GVfv3IrZw3y-LM%3A]
-- new name?
-- ff menu doesnt work
 
 
 ## Minor Bugs
-- FF autofocus
 - height of cursor in text area changes when return is hit
-- cursor color
 
 
 ## To Test

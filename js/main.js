@@ -39,6 +39,7 @@ var writer = (function($) {
   $(document).on("ready", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
     updateDimensions(600, 6.5, 15); // dimensions for any size screen
+    autofocus();
   });
   $(window).on("beforeunload", warning); // save work warning
   $(window).resize(function() {
@@ -59,6 +60,10 @@ var writer = (function($) {
   // ===========================================================
   function jsEnabled() {
     $writer.css("display", "block");
+  }
+
+  function autofocus() {
+    $writer.focus();
   }
 
   function maintainPadding() {
