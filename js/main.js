@@ -28,7 +28,7 @@ var writer = (function($) {
   $writer.on("keydown", function(e) {
     maintainPadding();                                        // autoscroll
     tab(e);                                                   // insert tab
-    //ret(e, $writer);                                          // insert return
+    ret(e, $writer);                                          // insert return
   });
   $writer.on("keyup", maintainPadding);                       // autoscroll
   $writer.on("paste", function(e) { paste(e); });             // paste
@@ -37,7 +37,7 @@ var writer = (function($) {
 
   // FUNCS
   // ===========================================================
-  function getCaretPosition(element) {
+  function getCaretPos(element) {
     var caretOffset = 0;
     if (w3) {
       var range = window.getSelection().getRangeAt(0);
@@ -55,16 +55,9 @@ var writer = (function($) {
     return caretOffset;
   }
 
-  // function editableContent(element) {
-  //   return element.html().replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
-  // };
-
   function maintainPadding() {
-    var pos = getCaretPosition($writer.get(0));
-    var end = $writer.text().length;
-    if(pos == end) {
-      wind.scrollTop($writer[0].scrollHeight);
-    }
+    var atEnd = (getCaretPos($writer.get(0)) == $writer.text().length) ? true : false;
+    if(atEnd) wind.scrollTop($writer[0].scrollHeight)
   }
 
   function tab(e) {
@@ -77,16 +70,12 @@ var writer = (function($) {
 
   function ret(e, el) {
     if(e.keyCode === 13) {
-      // var pos = getCaretPosition($writer.get(0));
-      // var formatted = editableContent($writer);
-      // $writer.html(formatted);
-      //
-      // var range = document.createRange();
-      // var sel = window.getSelection();
-      // range.setStart(el.get(0), pos);
-      // range.collapse(true);
-      // sel.removeAllRanges();
-      // sel.addRange(range);
+      e.preventDefault();
+      var retText;
+      var atEnd = (getCaretPos($writer.get(0)) == $writer.text().length) ? true : false;
+      retText = "<br>";
+      if(atEnd) retText = "<br><br>";
+      document.execCommand("InsertHTML", false, retText);
     }
   }
 
