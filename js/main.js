@@ -172,7 +172,8 @@ var menu = (function($) {
 
   function toggleFullscreen() {
     try {
-      if (screenfull.enabled) screenfull.toggle();
+      var notSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) ? false : true;
+      if (screenfull.enabled && notSafari) screenfull.toggle();
       else alert("Press F11 or ^⌘F to toggle Fullscreen");
     }
     catch(err) {

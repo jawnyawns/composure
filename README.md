@@ -41,7 +41,8 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - ff glitch, left align with pseudo elements
 - height of cursor in text area changes when return is hit
 - when holding enter with text above and below
-- safari fullscreen disable typing
+- safari scrolling menu is glitchy
+- safari wanring before reloading doesnt work
 
 
 ## To Test
