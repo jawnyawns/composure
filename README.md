@@ -34,7 +34,7 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## To Do Later
 - host and buy domain
 - first release: with completion of "to do now"
-- Add info page to [personal site](http://johnchinjew.com/projects/letterfocus)
+- Add info page (donations, ads, etc)
 
 
 ## Bugs *in order of importance*
