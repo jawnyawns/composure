@@ -8,12 +8,13 @@ var writer = (function($) {
   // cache
   var $window = $(window);
   var $writer = $("#writer");
+  var $body = $("body");
 
   // events
   $window.one("load", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
-    // updateDimensions(600, 6.5, 15); // dimensions for any size screen
     autoFocus(); // autofocus
+    // updateDimensions(600, 6.5, 15); // dimensions for any size screen
     maintainPadding(); // scroll down so user can scroll up to reveal menu
   });
   $window.on("beforeunload", warning);                           // save work warning
@@ -24,10 +25,10 @@ var writer = (function($) {
   //   }, 200);
   // });
   $writer.on("keydown", function(e) {
-    maintainPadding();                                        // autoscroll
-    tab(e);                                                   // insert tab
-    ret(e, $writer);                                          // insert return
-    // $("body").removeClass("show-menu"); // hide menu
+    maintainPadding(); // autoscroll
+    tab(e); // insert tab
+    ret(e, $writer); // insert return
+    menu.hideMenu(); // hide menu
   });
   $writer.on("keyup", function() {
     maintainPadding();
@@ -126,21 +127,6 @@ var writer = (function($) {
 
 })(jQuery);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var menu = (function($) {
 
   // vars
@@ -155,18 +141,31 @@ var menu = (function($) {
 
   // events
   $window.scroll(function() {
-    showMenu();
+    showMenuMaybe();
   });
 
   // funcs
   var lastSt = 0;
   var delta = 1/$window.height(); // 1% of height
-  function showMenu() {
+  function showMenuMaybe() {
     var st = $(this).scrollTop();
     if (Math.abs(lastSt - st) < delta) return;
-    if (st >= lastSt) { $body.removeClass("show-menu"); }
-    else { $body.addClass("show-menu"); }
+    if (st >= lastSt) { hideMenu(); }
+    else { showMenu(); }
     lastSt = st;
+  }
+
+  function showMenu() {
+    $body.addClass("show-menu");
+  }
+
+  function hideMenu() {
+    $body.removeClass("show-menu");
+  }
+
+  // api
+  return {
+    hideMenu: hideMenu
   }
 
 })(jQuery);
