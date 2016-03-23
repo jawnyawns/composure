@@ -13,11 +13,11 @@ var writer = (function($) {
   // events
   $window.one("load", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
-    autoFocus(); // autofocus
+    autoFocus();
     // updateDimensions(600, 6.5, 15); // dimensions for any size screen
-    maintainPadding(); // scroll down so user can scroll up to reveal menu
+    scrollDownMaybe(); // scroll down so user can scroll up to reveal menu
   });
-  $window.on("beforeunload", warning);                           // save work warning
+  $window.on("beforeunload", warning); // warning to keep work
   // $(window).resize(function() {
   //   clearTimeout(resizeTimer);
   //   var resizeTimer = setTimeout(function() {
@@ -25,16 +25,16 @@ var writer = (function($) {
   //   }, 200);
   // });
   $writer.on("keydown", function(e) {
-    maintainPadding(); // autoscroll
-    tab(e); // insert tab
-    ret(e, $writer); // insert return
-    menu.hideMenu(); // hide menu
+    scrollDownMaybe();
+    insertTab(e);
+    insertReturn(e);
+    menu.hideMenu();
   });
   $writer.on("keyup", function() {
-    maintainPadding();
-    emptyWhenEmpty();
-  });                       // autoscroll
-  $writer.on("paste", function(e) { paste(e); });             // paste
+    scrollDownMaybe(); // to maintain bottom padding
+    trulyEmptyMaybe(); // to reinstate the placeholder text
+  });
+  $writer.on("paste", function(e) { paste(e); }); // paste
 
   // funcs
   function jsEnabled() {
@@ -64,12 +64,12 @@ var writer = (function($) {
     return caretOffset;
   }
 
-  function maintainPadding() {
+  function scrollDownMaybe() {
     var atEnd = (getCaretPos($writer.get(0)) == $writer.text().length) ? true : false;
     if(atEnd) $window.scrollTop($writer[0].scrollHeight)
   }
 
-  function tab(e) {
+  function insertTab(e) {
     if(e.keyCode === 9) {
       e.preventDefault();
       var tabText = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -77,7 +77,7 @@ var writer = (function($) {
     }
   }
 
-  function ret(e, el) {
+  function insertReturn(e) {
     if(e.keyCode === 13) {
       e.preventDefault();
       var retText;
@@ -116,8 +116,7 @@ var writer = (function($) {
   //   });
   // }
 
-  // to reinstate the placeholder text
-  function emptyWhenEmpty() {
+  function trulyEmptyMaybe() {
     if($writer.html() == "" || $writer.html() == "<br>" || $writer.html() == "<br></br>" || $writer.html() == null) $writer.html(null);
   }
 
