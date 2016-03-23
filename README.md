@@ -23,17 +23,18 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 
 ## To Do
-- menu: needs a rethink....
+- hack cursor in *css* vs *js hack*
 - host and buy domain
-- code refactor
+- disable app if no js
+- consider textarea ....
+- menu: needs a rethink...
 
 
 ## Bugs
-- css is still too unpredictable and ugly (link)[https://www.google.com/search?q=iawriter&safe=strict&espv=2&biw=1077&bih=730&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjl7s3wltPLAhVU12MKHRnmAQYQ_AUIDCgA#imgrc=GVfv3IrZw3y-LM%3A]
-
-
-## Minor Bugs
+- css is still too unpredictable and ugly (link)[https://www.google.com/search?q=iawriter&safe=strict&espv=2&biw=1077&bih=730&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjl7s3wltPLAhVU12MKHRnmAQYQ_AUIDCgA#imgrc=GVfv3IrZw3y-LM%3A] *May also apply to js*
 - height of cursor in text area changes when return is hit
+- overall code refactor
+- ff glitch, left align with pseudo elements
 
 
 ## To Test
