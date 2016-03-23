@@ -25,21 +25,26 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 ## To Do Now
 - line breaks......
 - dimensions... (inspiration)[https://goo.gl/l5fcbn]
-  - hack padding, but deal with weird box-sizing in js
-  - rework css queries (inspiration)[https://goo.gl/l5fcbn] *May also apply to js*
+  - rework css queries (inspiration)[https://goo.gl/l5fcbn]
 - Keep cleaning code up
-- add menu functionality
-
-
-## To Do Later
-- host and buy domain
-- create first release
-- Add info page to [personal site](http://johnchinjew.com/projects/letterfocus)
 
 
 ## Bugs *in order of importance*
 - ff glitch, left align with pseudo elements
 - height of cursor in text area changes when return is hit
+- no autoscroll when holding enter with text above and below
+- safari scrolling menu is glitchy
+- safari wanring before reloading doesnt work
+- ie9 doesnt support js defer well, only defer if not in ie
+- jquery not caching? - appcache in general haha :(
+
+
+## To Do Later
+- host and buy domain
+- first release: with completion of "to do now"
+- Add info page (donations, ads, etc)
+- error handling
+- A manifest file should always be served under the correct media type of text/cache-manifest. If the media type is not set, then AppCache will not work. (go)[http://www.sitepoint.com/common-pitfalls-avoid-using-html5-application-cache/]
 
 
 ## To Test
@@ -48,3 +53,4 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - browser testing (ie10 and up)
 - how do scroll bars affect things.....
 - unit test
+- link highlight

@@ -51,24 +51,44 @@
 </head>
 <body class=" ">
 
-  <p id="error" style="color:#AAA;font-size:15px;padding:15px;max-width:555px">Something isn't quite right. Make sure you are using a modern, up-to-date, JavaScript enabled browser; then try reloading the page.</p>
+  <p id="error" style="color:#AAA;font-size:15px;padding:15px;max-width:555px">If things aren't working, make sure you are using a modern, up-to-date, JavaScript enabled browser and double check the strength of your internet connection; then try reloading the page.</p>
 
   <div id="menu" class="menu">
-    <div class="inner-menu">
+    <div class="inner-menu" unselectable="on">
       <a title="Change theme">Theme</a>
       <a title="Toggle fullscreen mode">Fullscreen</a>
       <a title="Print your work">Print</a>
       <a title="Download your work">Export</a>
-      <a title="Email your work to yourself or others">Send</a>
-      <a title="Learn more about Letter Focus">Info</a>
+      <a title="Email your work to yourself or others" target="_blank">Send</a>
+      <a title="Learn more about Letter Focus" href="http://bit.ly/LFocus" target="_blank">About</a>
     </div>
   </div>
 
-  <div contenteditable="true" id="writer" class="writer" placeholder="Psst, scroll up to show the menu!" autofocus></div>
+  <div contenteditable="true" id="writer" class="writer" placeholder="Psst, scroll up to see the menu!" autofocus></div>
 
-  <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/screenfull.js" defer></script>
+  <script src="js/download.js" defer></script>
+
   <script>//TODO: Replace 'UA-XXXX-Y' with your property ID//!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-XXXX-Y","auto"),ga("send","pageview");</script>
+
+  <script>
+    document.addEventListener("touchstart", function(){}, true); // enable styling of link highlight on mobile tap
+  </script>
+  <script>
+  // Check if a new cache is available on page load.
+  window.addEventListener('load', function(e) {
+    window.applicationCache.addEventListener('updateready', function(e) {
+      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+        // Browser downloaded a new app cache.
+        if (confirm('A new version of this site is available. Load it?')) {
+          window.location.reload();
+        }
+      }
+    }, false);
+  }, false);
+  </script>
 
 </body>
 </html>
