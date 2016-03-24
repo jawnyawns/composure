@@ -31,6 +31,7 @@ a {
 
 ::-moz-selection { background-color: rgba(155, 155, 155, 0.285) }
 ::selection { background-color: rgba(155, 155, 155, 0.285) }
+body::-webkit-scrollbar { width: 0 !important; }
 
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
@@ -44,7 +45,6 @@ a {
 
 .writer {
   display: none; /* display block if js */
-  min-height: 101%; /* allows js to reveal menu */
   position: relative;
   outline: 0;
   white-space: pre-wrap;
@@ -83,11 +83,10 @@ a {
   z-index: 1;
   background: #484743;
   color: #FFF;
-  padding: 4px 15px; /* matches with min gutter in js         < -------------working--------------- */
+  padding: 4px;
 }
 
-.menu .inner-menu {
-  max-width: 600px; /* matches with min gutter in js + gutter < -------------working--------------- */
+.inner-menu {
   margin: 0 auto;
   font-size: .75rem;
   text-align: center;
@@ -110,7 +109,7 @@ a {
           user-select: none;
 }
 
-.inner-menu:lastchild {
+.inner-menu a:last-child {
   margin: 0;
 }
 
@@ -119,9 +118,9 @@ a {
           transform: translateY(0);
 }
 
-@media screen and (min-width: 1px)    { html { font-size: 100%; } } /* < -------------working--------------- */
-@media screen and (min-width: 500px)  { html { font-size: 110%; } } /* < -------------working--------------- */
-@media screen and (min-width: 1200px) { html { font-size: 120%; } } /* < -------------working--------------- */
+@media screen and (min-width: 1px)    { html { font-size: 100%; } }
+@media screen and (min-width: 500px)  { html { font-size: 110%; } }
+@media screen and (min-width: 1200px) { html { font-size: 120%; } }
 
 @media print {
   .menu { display: none !important; }

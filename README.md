@@ -24,22 +24,22 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 
 ## To Do Now
 - line breaks......
-- dimensions... (inspiration)[https://goo.gl/l5fcbn]
-  - rework css queries (inspiration)[https://goo.gl/l5fcbn]
+- ff glitch, left align with pseudo elements
 - Keep cleaning code up
 
 
 ## Bugs *in order of importance*
-- ff glitch, left align with pseudo elements
-- height of cursor in text area changes when return is hit
-- no autoscroll when holding enter with text above and below
-- safari scrolling menu is glitchy
 - safari wanring before reloading doesnt work
+- no autoscroll when holding enter with text above and below
+- once out of fullscreen, menu no longer hides or shows
 - ie9 doesnt support js defer well, only defer if not in ie
 - jquery not caching? - appcache in general haha :(
+- safari scrolling menu is glitchy
+- height of cursor in text area changes when return is hit
 
 
 ## To Do Later
+- tweak everything to perfection (inspiration)[https://goo.gl/l5fcbn]
 - host and buy domain
 - first release: with completion of "to do now"
 - Add info page (donations, ads, etc)

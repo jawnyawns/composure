@@ -14,14 +14,14 @@ var writer = (function($) {
   $window.one("load", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
     autoFocus();
-    updateDimensions(600, 6.5, 15); // dimensions
+    updateDimensions(675, 12, 4);
     scrollDownMaybe(); // scrolls down so user can scroll up to reveal menu
   });
-  $window.on("beforeunload", warning); // warning to keep work
+  $window.on("beforeunload", warning);
   $(window).resize(function() {
     clearTimeout(resizeTimer);
     var resizeTimer = setTimeout(function() {
-      updateDimensions(600, 7.5, 15); // dimensions
+      updateDimensions(675, 12, 4);
     }, 200);
   });
   $writer.on("keydown", function(e) {
@@ -97,18 +97,19 @@ var writer = (function($) {
     document.execCommand("insertHTML", false, clipboardText);
   }
 
-  function updateDimensions(MaxWidthInPx, vertPaddingInPer, minHorizPaddingInPx) {
+  function updateDimensions(MaxWidthInPx, vertPaddingInPer, minHorizPaddingInPer) {
     var x = ($(window).width() - MaxWidthInPx) / 2 ;
-    if (x < minHorizPaddingInPx) x = minHorizPaddingInPx;
-    var y = vertPaddingInPer;
+    if (x < minHorizPaddingInPer * $(window).width() / 100) x = minHorizPaddingInPer + "%"; // < ------------------------- MAKE PERCENT!!!!!!!!
+    var y = (vertPaddingInPer / 100) * $window.height();
     if ($(window).width() < MaxWidthInPx) {
       adjustedWidth = $(window).width() - (x*2);
     }
     $writer.css({
-      "padding-top" : y + "%",
+      "padding-top" : y,
       "padding-right" : x,
-      "padding-bottom" : y + "%",
-      "padding-left" : x
+      "padding-bottom" : y,
+      "padding-left" : x,
+      "min-height" : $window.height() + 27
     });
   }
 
@@ -122,7 +123,7 @@ var writer = (function($) {
 
   // api
   return {
-    updateDimensions: updateDimensions
+    // ...
   }
 
 })(jQuery);
@@ -133,16 +134,17 @@ var menu = (function($) {
   var $window = $(window);
   var $body = $("body");
   var $writer = $("#writer");
-  var $menu = $("#menu div");
-  var $themeBtn = $menu.find(":nth-child(1)");
-  var $fullscreenBtn = $menu.find(":nth-child(2)");
-  var $printBtn = $menu.find(":nth-child(3)");
-  var $exportBtn = $menu.find(":nth-child(4)");
-  var $emailBtn = $menu.find(":nth-child(5)");
+  var $menu = $("#menu")
+  var $menuInner = $menu.find(":nth-child(1)");
+  var $themeBtn = $menuInner.find(":nth-child(1)");
+  var $fullscreenBtn = $menuInner.find(":nth-child(2)");
+  var $printBtn = $menuInner.find(":nth-child(3)");
+  var $exportBtn = $menuInner.find(":nth-child(4)");
+  var $emailBtn = $menuInner.find(":nth-child(5)");
 
   // vars
   var lastSt = 0;
-  var delta = .5/$window.height(); // 1% of height
+  var delta = $menu.outerHeight();
 
   // events
   $window.on("scroll", function() {
@@ -153,6 +155,15 @@ var menu = (function($) {
   $printBtn.on("click", printWork);
   $exportBtn.on("click", exportWork);
   $emailBtn.on("click", sendWork);
+  $window.one("load", function() {
+    updateDimensions(675, 4);
+  });
+  $window.on("resize", function() {
+    clearTimeout(resizeTimer);
+    var resizeTimer = setTimeout(function() {
+      updateDimensions(675, 4);
+    }, 200);
+  });
 
   // funcs
   function showMenuMaybe() {
@@ -203,7 +214,7 @@ var menu = (function($) {
   }
 
   function sendWork() {
-    var subj = "Written on LetterFocus";
+    var subj = "Written on Letter Focus";
     var str = $writer.html();
     str = str.replace(/<br>/g, "%0D%0A");
     str = str.replace(/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/g, "%20%20%20%20%20");
@@ -213,9 +224,18 @@ var menu = (function($) {
     $emailBtn.attr("href", emailLink);
   }
 
+  function updateDimensions(maxWidthInPx, gutterPaddingInPer) {
+    $menuInner.css("max-width", maxWidthInPx);
+    var gutterPaddingInPer = gutterPaddingInPer + "%";
+    $menu.css({
+      "padding-left" : gutterPaddingInPer,
+      "padding-right" : gutterPaddingInPer
+    });
+  }
+
   // api
   return {
-    
+    hideMenu: hideMenu
   }
 
 })(jQuery);
