@@ -14,14 +14,14 @@ var writer = (function($) {
   $window.one("load", function() {
     jsEnabled(); // check for js, otherwise leave app hidden
     autoFocus();
-    updateDimensions(675, 12, 4);
+    updateDimensions(675, 15, 4);
     scrollDownMaybe(); // scrolls down so user can scroll up to reveal menu
   });
   $window.on("beforeunload", warning);
   $(window).resize(function() {
     clearTimeout(resizeTimer);
     var resizeTimer = setTimeout(function() {
-      updateDimensions(675, 12, 4);
+      updateDimensions(675, 15, 4);
     }, 200);
   });
   $writer.on("keydown", function(e) {
