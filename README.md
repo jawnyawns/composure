@@ -26,6 +26,8 @@ Letter Focus and its materials, code, documentation, artwork, and intellectual p
 - line breaks......
 - ff glitch, left align with pseudo elements
 - Keep cleaning code up
+- LF Info Page needed: share, donate, me link, ads, features
+- http://zenpen.io (has better name and features)
 
 
 ## Bugs *in order of importance*
