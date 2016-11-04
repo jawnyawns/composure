@@ -1,94 +1,35 @@
 <!DOCTYPE html>
-<html manifest="cache.appcache">
-<head><!--
+<html lang="en">
+  <head>
 
-           .   `smNdy+-
-        :ym.  :NMMMMMMMm:
-       :dMMs  +MMMMMMMMMMs
-      sMMMMo`yMMMMMMMMMMN-
-     :MMMMMMNMMMMMMMMMNy-
-     oMMMMMMMMMdyso+/-
-     oMMMMMMMMMy:.``.`
-  ./  +MMMMMMMMMMMMMN+`
-  +M/ :MMMMMMMMMMms:
-  +MM+`MMMMm/:-.`     (c) Letter Focus | @LetterFocus | #WriteWithFocus
-  `NMMdMMMMMms/:.
-    :NMMMMMMMMMMs`    Letter Focus and its materials, code, documentation, artwork,
-     /MMNNmmdho.      and intellectual property herein are all (c) 2016 John Chin-Jew.
-     hMd`             All rights reserved.
-     :MM-
-     yMs              @johnchinjew | johnchinjew.com | hi@johnchinjew.com
-     yd`
+    <meta charset="UTF-8">
+    <title>Mono</title>
+    <meta name="description" content="A featureless text editor: pure, minimal, beautiful.">
+    <meta name="author" content="John Chin-Jew">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  --><meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta charset="UTF-8">
-  <title>Letter Focus</title>
-  <meta name="description" content="A beautiful, distraction free web writer built to help you focus – #WriteWithFocus.">
-  <meta name="author" content="John Chin-Jew">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="favicon.png">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="manifest" href="manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#F3F2F0">
-  <link rel="icon" sizes="192x192" href="img/favicon.gif">
+  </head>
+  <body style="display:none">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:500">
-  <link rel="stylesheet" href="css/styles.css">
+    <div id="writer" t="⌘L - Lights
 
-  <meta name="twitter:card" content="Write with focus.">
-  <meta name="twitter:site" content="@LetterFocus">
-  <meta name="twitter:title" content="Letter Focus">
-  <meta name="twitter:description" content="A beautiful, distraction free web writer built to help you #WriteWithFocus.">
-  <meta name="twitter:creator" content="@LetterFocus">
-  <meta name="twitter:image" content="http://letterfocus.com/img/card.jpg">
-  <meta property="og:title" content="Letter Focus">
-  <meta property="og:url" content="http://letterfocus.com">
-  <meta property="og:image" content="http://letterfocus.com/img/card.jpg">
-  <meta property="og:description" content="A beautiful, distraction free web writer built to help you #WriteWithFocus.">
-  <meta property="og:site_name" content="Letter Focus">
+⌘B - Bold
+⌘I - Italics
+⌘U - Underline
+⌘K - Strikethrough
 
-</head>
-<body class=" ">
+⌘S - Save
+⌘P - Print
 
-  <p id="error" style="color:#AAA;font-size:15px;padding:15px;max-width:555px">If things aren't working, make sure you are using a modern, up-to-date, JavaScript enabled browser and double check the strength of your internet connection; then try reloading the page.</p>
+⌘J - About" contenteditable></div>
 
-  <div id="menu" class="menu">
-    <div class="inner-menu" unselectable="on">
-      <a title="Change theme">Theme</a>
-      <a title="Toggle fullscreen mode">Fullscreen</a>
-      <a title="Print your work">Print</a>
-      <a title="Download your work">Export</a>
-      <a title="Email your work to yourself or others" target="_blank">Send</a>
-      <a title="Learn more about Letter Focus" href="http://bit.ly/LFocus" target="_blank">About</a>
-    </div>
-  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+    <script src="js/index.js"></script>
+    <script>WebFont.load({google:{families:["Roboto+Mono:400,700:latin"]}})</script>
 
-  <div contenteditable="true" id="writer" class="writer" placeholder="Psst, scroll to use the menu!" autofocus></div>
-
-  <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/screenfull.js" defer></script>
-  <script src="js/download.js" defer></script>
-
-  <script>//TODO: Replace 'UA-XXXX-Y' with your property ID//!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-XXXX-Y","auto"),ga("send","pageview");</script>
-
-  <script>
-    document.addEventListener("touchstart", function(){}, true); // enable styling of link highlight on mobile tap
-  </script>
-  <script>
-  // Check if a new cache is available on page load.
-  window.addEventListener('load', function(e) {
-    window.applicationCache.addEventListener('updateready', function(e) {
-      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-        // Browser downloaded a new app cache.
-        if (confirm('A new version of this site is available. Load it?')) {
-          window.location.reload();
-        }
-      }
-    }, false);
-  }, false);
-  </script>
-
-</body>
+  </body>
 </html>
