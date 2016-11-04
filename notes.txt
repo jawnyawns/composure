@@ -23,13 +23,6 @@ add social meta
 Safari, Chromebook:
 ⌘L Doesnt work
 
-Fixed bugs:
-- removed menu
-- firefox linebreaks
-- use css to dynamically resize app padding
-- prevent default tab behavior
-- strip styling on paste
-
 
 ***
 tweaks & refactoring & testing
