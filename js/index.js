@@ -1,28 +1,67 @@
 "use strict"
 
-window.addEventListener("load", () => { init() })
+/* MAIN -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-const init = () => {
-  const $w = document.getElementById("writer") // cache app DOM
+window.addEventListener("load", () => {
+  // cache editor dom
+  const $editor = document.getElementById("editor")
 
-  $w.addEventListener("keydown", e => {
-    maybeScroll($w)   // scroll down when appropriate
-    handleCmds(e, $w) // disable default shortcuts, enable saving & theme toggling
-    handleTabs(e)     // insert actual tab instead of default tab behavior
-    handleRets(e, $w) // fixes line break weirdness in FF & Safari
+  // content persistance
+  if(!localStorage.getItem('_mwcs'))
+    populateStorage("_mwcs", "") // setup new storage for entry
+  else
+    populateEditor($editor, localStorage._mwcs) // load stored content into editor
+
+  // sync editor content between tabs
+  window.addEventListener("storage", e => {
+    populateEditor($editor, e.newValue)
   })
 
-  $w.addEventListener("keyup", e => {
-    maybeScroll($w) // scroll down when appropriate
-    maybeEmpty($w)  // empties writer when functionally empty allowing placeholder text to reappear
+  // update storage
+  $editor.addEventListener("input", e => {
+    populateStorage("_mwcs", $editor.innerText)
   })
 
-  $w.addEventListener("paste", e => { handlePaste(e) }) // insert clipboard content w/o styling
+  // editor keydown
+  $editor.addEventListener("keydown", e => {
+    handleCmds(e, $editor) // disable contenteditable shortcuts, enable editor shortcuts
+    handleTabs(e)     // insert actual tabs instead of default tabbing behavior
+    handleRets(e, $editor) // fixes line break weirdness in FF & Safari
+  })
 
-  $w.focus() // focus the writer
+  // editor keyup
+  $editor.addEventListener("keyup", e => {
+    maybeScroll($editor) // scroll down when appropriate
+    maybeEmpty($editor)  // empties editor when visually empty, so placeholder reappears
+  })
 
-  document.body.style.display = "block" // show the app
+  // editor paste
+  $editor.addEventListener("paste", e => {
+    handlePaste(e) // insert clipboard content w/o styling
+  })
+
+  // display and focus editor
+  $editor.hidden = false
+  $editor.focus()
+})
+
+
+
+
+/* STORAGE -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+
+const populateStorage = (ref, str) => {
+  localStorage.setItem(ref, str)
 }
+
+const populateEditor = (el, str) => {
+  el.innerText = str
+}
+
+
+
+
+/* KEYBOARD COMMANDS -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const handleCmds = (e, el) => {
   const k = e.keyCode
@@ -50,14 +89,15 @@ const toggleTheme = () => {
     body.className = "day"
 }
 
-const maybeEmpty = el => {
-  if (el.innerText == "\n") el.innerText = ""
+const exportDoc = el => {
+  try { download(el.innerText, "mono.txt", "text/plain") }
+  catch (err) { alert("An error occurred.") }
 }
 
-const maybeScroll = el => {
-  if(getCaretIndex(el) >= el.textContent.length)
-    scrollTo(0,document.body.scrollHeight);
-}
+
+
+
+/* NORMALIZE CONTENTEDITABLE -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const handleTabs = e => {
   if(e.keyCode === 9) {
@@ -80,10 +120,19 @@ const handlePaste = e => {
   document.execCommand("insertHTML", false, clipText)
 }
 
-const exportDoc = el => {
-  try { download(el.innerText, "mono.txt", "text/plain") }
-  catch (err) { alert("An error occurred.") }
+const maybeEmpty = el => {
+  if (el.innerText == "\n") el.innerText = ""
 }
+
+const maybeScroll = el => {
+  if(getCaretIndex(el) >= el.textContent.length)
+    scrollTo(0,document.body.scrollHeight);
+}
+
+
+
+
+/* HELPERS -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const getCaretIndex = el => {
   let caretOffset = 0

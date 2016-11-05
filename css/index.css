@@ -2,14 +2,14 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  display: none; /* only show if js active */
   font-family: "Space Mono", monospace;
   line-height: 2;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
+}
 
-  /* theme colors */
-} .day {
+/* theme colors, applied to body with js */
+.day {
   background-color: #f5f5f5;
   color: #232323;
 } .night {
@@ -27,7 +27,7 @@ body {
   color: rgba(145,145,145,.75);
 }
 
-#writer {
+#editor {
   outline: 0;
   background: none;
   white-space: pre-wrap;
