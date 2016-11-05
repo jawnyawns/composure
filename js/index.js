@@ -72,7 +72,7 @@ const handleCmds = (e, el) => {
       e.preventDefault()
       toggleTheme()
       break
-    case "⌘E":
+    case "⌘S":
       e.preventDefault()
       exportDoc(el)
       break

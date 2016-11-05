@@ -11,10 +11,10 @@ body {
 /* theme colors, applied to body with js */
 .day {
   background-color: #f5f5f5;
-  color: #232323;
+  color: #252525;
 } .night {
   background-color: #212121;
-  color: #e4e4e4;
+  color: #e2e2e2;
 }
 
 ::selection      { background: rgba(3,180,225,.4) }
