@@ -1,43 +1,88 @@
 "use strict"
 
-const $w = document.getElementById("writer")
+window.addEventListener("load", () => { init() })
 
-addEventListener("load", () => {
-  revealBody()
-  $w.focus()
-})
+const init = () => {
+  const $w = document.getElementById("writer") // cache app DOM
 
-addEventListener("keydown", e => {
-  maybeScroll()
-  handleCmds(e, $w)
-  handleTabs(e)
-  handleRets(e, $w)
-})
+  $w.addEventListener("keydown", e => {
+    maybeScroll($w)   // scroll down when appropriate
+    handleCmds(e, $w) // disable default shortcuts, enable saving & theme toggling
+    handleTabs(e)     // insert actual tab instead of default tab behavior
+    handleRets(e, $w) // fixes line break weirdness in FF & Safari
+  })
 
-addEventListener("keyup", e => {
-  maybeEmpty($w)
-  maybeScroll()
-})
+  $w.addEventListener("keyup", e => {
+    maybeScroll($w) // scroll down when appropriate
+    maybeEmpty($w)  // empties writer when functionally empty allowing placeholder text to reappear
+  })
 
-addEventListener("paste", e => {
-  handlePaste(e)
-})
+  $w.addEventListener("paste", e => { handlePaste(e) }) // insert clipboard content w/o styling
+
+  $w.focus() // focus the writer
+
+  document.body.style.display = "block" // show the app
+}
+
+const handleCmds = (e, el) => {
+  const k = e.keyCode
+  if (k < 65 || k > 90) return
+  const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
+  switch(cmd) {
+    case "⌘M":
+      e.preventDefault()
+      toggleTheme()
+      break
+    case "⌘E":
+      e.preventDefault()
+      exportDoc(el)
+      break
+    case "⌘B": e.preventDefault(); break
+    case "⌘I": e.preventDefault(); break
+  }
+}
 
 const toggleTheme = () => {
-  let body = document.body
-  if (body.className == "")
-    body.className = "dark"
+  const body = document.body
+  if (body.className == "day")
+    body.className = "night"
   else
-    body.className = ""
+    body.className = "day"
 }
 
 const maybeEmpty = el => {
   if (el.innerText == "\n") el.innerText = ""
 }
 
-const maybeScroll = () => {
-  if((getCaretIndex($w) >= $w.textContent.length) ? true : false)
+const maybeScroll = el => {
+  if(getCaretIndex(el) >= el.textContent.length)
     scrollTo(0,document.body.scrollHeight);
+}
+
+const handleTabs = e => {
+  if(e.keyCode === 9) {
+    e.preventDefault();
+    document.execCommand("insertText", false, "     ");
+  }
+}
+
+const handleRets = (e, el) => {
+  if (e.keyCode === 13 && el.innerHTML == ""
+  && navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    e.preventDefault();
+    document.execCommand("insertText", false, "\n\n");
+  }
+}
+
+const handlePaste = e => {
+  e.preventDefault()
+  const clipText = (e.originalEvent || e).clipboardData.getData('text/plain')
+  document.execCommand("insertHTML", false, clipText)
+}
+
+const exportDoc = el => {
+  try { download(el.innerText, "mono.txt", "text/plain") }
+  catch (err) { alert("An error occurred.") }
 }
 
 const getCaretIndex = el => {
@@ -56,58 +101,4 @@ const getCaretIndex = el => {
     preCaretTextRange.setEndPoint("EndToEnd", textRange)
     caretOffset = preCaretTextRange.text.length
   } return caretOffset
-}
-
-const handleCmds = (e, el) => {
-  const k = e.keyCode
-  let d = document, stopDef = true
-  if (k < 65 || k > 90) return
-  const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
-  switch(cmd) {
-    case "⌘L": toggleTheme(); break
-    case "⌘B": d.execCommand("bold"); break
-    case "⌘I": d.execCommand("italic"); break
-    case "⌘U": d.execCommand("underline"); break
-    case "⌘K": d.execCommand("strikethrough"); break
-    case "⌘S": exportDoc(e, el); break
-    case "⌘P": print(); break
-    case "⌘J": openAboutPage(); break
-    default: stopDef = false
-  }
-  if (stopDef) e.preventDefault()
-}
-
-const handleTabs = e => {
-  if(e.keyCode === 9) {
-    e.preventDefault();
-    document.execCommand("insertText", false, "\t");
-  }
-}
-
-const handleRets = (e, el) => {
-  if (e.keyCode === 13 && el.innerHTML == ""
-  && navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-    e.preventDefault();
-    document.execCommand("insertText", false, "\n\n");
-  }
-}
-
-const handlePaste = e => {
-  e.preventDefault()
-  const clipText = (e.originalEvent || e).clipboardData.getData('text/plain')
-  document.execCommand("insertHTML", false, clipText)
-}
-
-const revealBody = () => {
-  document.body.style.display = "block"
-}
-
-const exportDoc = (e, el) => {
-  e.preventDefault()
-  let str = el.innerText
-  try {
-    download(str, "mono.txt", "text/plain")
-  } catch (err) {
-    alert("An error occurred, to Export work please reload the page.")
-  }
 }

@@ -4,33 +4,28 @@
 
     <meta charset="UTF-8">
     <title>Mono</title>
-    <meta name="description" content="A featureless text editor: pure, minimal, beautiful.">
+    <meta name="description" content="A pure, super minimal text editor.">
     <meta name="author" content="John Chin-Jew">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" href="/favicon.png">
 
   </head>
-  <body style="display:none">
+  <body class="day">
 
-    <div id="writer" t="⌘L - Lights
+    <div id="writer" t="Mono by John Chin-Jew.
+A pure, super minimal text editor.
 
-⌘B - Bold
-⌘I - Italics
-⌘U - Underline
-⌘K - Strikethrough
+There are 2 commands:
+Press ⌘M to toggle the MODE
+Press ⌘E to EXPORT your writing" contenteditable></div>
 
-⌘S - Save/Export
-⌘P - Print
-
-⌘J - About" contenteditable></div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
     <script src="/js/download.js"></script>
     <script src="/js/index.js"></script>
-    <script>WebFont.load({google:{families:["Roboto+Mono:400,700:latin"]}})</script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" async>
+      WebFont.load({google:{families:["Space+Mono:400:latin"]}})
+    </script>
+    
   </body>
 </html>
