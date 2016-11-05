@@ -9,7 +9,7 @@ addEventListener("load", () => {
 
 addEventListener("keydown", e => {
   maybeScroll()
-  handleCmds(e)
+  handleCmds(e, $w)
   handleTabs(e)
   handleRets(e, $w)
 })
@@ -58,7 +58,7 @@ const getCaretIndex = el => {
   } return caretOffset
 }
 
-const handleCmds = e => {
+const handleCmds = (e, el) => {
   const k = e.keyCode
   let d = document, stopDef = true
   if (k < 65 || k > 90) return
@@ -69,7 +69,7 @@ const handleCmds = e => {
     case "⌘I": d.execCommand("italic"); break
     case "⌘U": d.execCommand("underline"); break
     case "⌘K": d.execCommand("strikethrough"); break
-    case "⌘S": exportDoc(); break
+    case "⌘S": exportDoc(e, el); break
     case "⌘P": print(); break
     case "⌘J": openAboutPage(); break
     default: stopDef = false
@@ -100,4 +100,14 @@ const handlePaste = e => {
 
 const revealBody = () => {
   document.body.style.display = "block"
+}
+
+const exportDoc = (e, el) => {
+  e.preventDefault()
+  let str = el.innerText
+  try {
+    download(str, "mono.txt", "text/plain")
+  } catch (err) {
+    alert("An error occurred, to Export work please reload the page.")
+  }
 }

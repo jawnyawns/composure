@@ -1,11 +1,12 @@
 # Todo
+- explore monospace fonts
+- html save persistance
+- offline support & resync
 - big blue caret
 	- http://jsfiddle.net/NFJ9r/132/
 	- https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
-- save as .txt/.md/.rtf file
-- html save persistance
-- offline support & resync
 - webapp capable
+- explore other names
 
 # Bugs
 - Safari, Chromebook: ⌘L doesnt work
