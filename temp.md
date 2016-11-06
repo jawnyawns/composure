@@ -1,5 +1,6 @@
 # Todo
 - big blue caret
+	- hide native caret
 	- blinking
 - offline support & resync
 - webapp capable
