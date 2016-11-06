@@ -61,9 +61,9 @@ window.addEventListener("load", () => {
     cancelAnimationFrame(caretFrame)
   })
 
-  // display and focus editor
-  $editor.hidden = false
-  $editor.focus()
+  maybeEmpty($editor) // empties editor when visually empty, so placeholder reappears
+  $editor.hidden = false // display editor
+  $editor.focus() // focus editor
 })
 
 
@@ -85,8 +85,8 @@ const populateEditor = (el, str) => {
 /* CUSTOM CARET -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const moveCaret = () => {
-  $caret.style.left = getCaretCoords().x-1 + "px"
-  $caret.style.top = getCaretCoords().y-1 + "px"
+  $caret.style.left = getCaretCoords($editor).x-1 + "px"
+  $caret.style.top = getCaretCoords($editor).y-1 + "px"
   if (document.getSelection().toString() == "")
     $caret.hidden = false
   else
@@ -189,34 +189,40 @@ const getCaretIndex = el => {
 }
 
 // http://stackoverflow.com/questions/6846230/coordinates-of-selected-text-in-browser-page
-const getCaretCoords = () => {
+const getCaretCoords = el => {
   let sel = document.selection, range, rect
   let x = 0, y = 0
+
+  // METHOD 1
   if (sel) {
     if (sel.type != "Control") {
       range = sel.createRange()
       range.collapse(true)
-      x = range.boundingLeft
-      y = range.boundingTop
+      x = range.boundingLeft, y = range.boundingTop // <-- *
     }
-  } else if (window.getSelection) {
+  }
+  // METHOD 2
+  else if (window.getSelection) {
     sel = window.getSelection()
     if (sel.rangeCount) {
       range = sel.getRangeAt(0).cloneRange()
-      if (range.getClientRects) {
+      if (range.getClientRects && el.innerText != "") { // if the editor is empty fall back to method 3
         range.collapse(true)
         if (range.getClientRects().length > 0){
           rect = range.getClientRects()[0]
-          x = rect.left, y = rect.top
+          x = rect.left, y = rect.top // <-- *
         }
-      } if (x == 0 && y == 0) { // fall back to inserting a temporary element
+      }
+
+      // METHOD 3
+      if (x == 0 && y == 0) { // fall back to inserting a temporary element
         let span = document.createElement("span")
         if (span.getClientRects) {
           // span with zero-width characer has dimensions and position
           span.appendChild( document.createTextNode("\u200b") )
           range.insertNode(span)
           rect = span.getClientRects()[0]
-          x = rect.left, y = rect.top
+          x = rect.left, y = rect.top // <-- *
           let spanParent = span.parentNode
           spanParent.removeChild(span)
           spanParent.normalize() // glue any broken text nodes back together
