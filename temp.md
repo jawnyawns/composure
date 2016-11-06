@@ -1,9 +1,11 @@
 # Todo
 - big blue caret
-	- http://jsfiddle.net/NFJ9r/132/
-	- https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+	- blinking
+	- lots of bugs
+	- improve getCoords function
 - offline support & resync
 - webapp capable
+- improve support (animationframe, innertext, etc)
 
 # Bugs
 - prompt user to save before saving

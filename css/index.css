@@ -2,7 +2,7 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  font-family: "Space Mono", monospace;
+  font-family: "Roboto Mono", monospace;
   line-height: 2;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
@@ -41,6 +41,13 @@ body {
   max-width: calc(40.5rem + 5vw);
   padding: 4rem 1rem;
   padding: 10.3vmin 4vmin;
+}
+
+#caret {
+  background: rgba(3,180,225,1);
+  position: fixed;
+  height: 1.4rem;
+  width: 3px;
 }
 
 /* printing */
