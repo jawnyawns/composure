@@ -85,7 +85,6 @@ const populateEditor = (el, str) => {
 /* CUSTOM CARET -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const moveCaret = () => {
-  console.log("!")
   $caret.style.left = getCaretCoords().x-1 + "px"
   $caret.style.top = getCaretCoords().y-1 + "px"
   if (document.getSelection().toString() == "")
@@ -189,35 +188,40 @@ const getCaretIndex = el => {
   } return caretOffset
 }
 
+// http://stackoverflow.com/questions/6846230/coordinates-of-selected-text-in-browser-page
 const getCaretCoords = () => {
-  const $w = window
-  const $d = $w.document
-  let sel = $d.selection, range, rects, rect
+  let sel = document.selection, range, rect
   let x = 0, y = 0
   if (sel) {
     if (sel.type != "Control") {
       range = sel.createRange()
       range.collapse(true)
-      x = range.boundingLeft, y = range.boundingTop
+      x = range.boundingLeft
+      y = range.boundingTop
     }
-  } else if ($w.getSelection) {
-    sel = $w.getSelection()
+  } else if (window.getSelection) {
+    sel = window.getSelection()
     if (sel.rangeCount) {
       range = sel.getRangeAt(0).cloneRange()
       if (range.getClientRects) {
         range.collapse(true)
-        rects = range.getClientRects()
-        if (rects.length > 0) rect = rects[0]
-        x = rect.left, y = rect.top
-      } if (x == 0 && y == 0) {
-        let span = $d.createElement("span")
+        if (range.getClientRects().length > 0){
+          rect = range.getClientRects()[0]
+          x = rect.left, y = rect.top
+        }
+      } if (x == 0 && y == 0) { // fall back to inserting a temporary element
+        let span = document.createElement("span")
         if (span.getClientRects) {
-          span.appendChild( $d.createTextNode("\u200b") )
+          // span with zero-width characer has dimensions and position
+          span.appendChild( document.createTextNode("\u200b") )
           range.insertNode(span)
           rect = span.getClientRects()[0]
           x = rect.left, y = rect.top
           let spanParent = span.parentNode
-          spanParent.removeChild(sspan)
-          spanParent.normalize()
-  }}}} return { x: x, y: y }
+          spanParent.removeChild(span)
+          spanParent.normalize() // glue any broken text nodes back together
+        }
+      }
+    }
+  } return { x: x, y: y }
 }

@@ -2,12 +2,13 @@
 - big blue caret
 	- blinking
 	- lots of bugs
-	- improve getCoords function
+	- position caret when editor empty
 - offline support & resync
 - webapp capable
 - improve support (animationframe, innertext, etc)
 
 # Bugs
+- enter content on multiple lines, cmd+a delete, refresh, placeholder does not reappear
 - prompt user to save before saving
 - Safari: CMD + M fails to preventDefault, does not toggle theme
 - Safari: Exporting doc fails
