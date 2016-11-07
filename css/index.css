@@ -37,12 +37,11 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   margin: 0 auto;
-  font-size: .975rem;
   letter-spacing: .06rem;
   min-height: 100%;
   min-height: 100vh;
-  max-width: 42rem;
-  max-width: calc(40.5rem + 5vw);
+  max-width: 48.5rem;
+  max-width: calc(43rem + 6vw);
   padding: 4rem 1rem;
   padding: 10.3vmin 4vmin;
 }
