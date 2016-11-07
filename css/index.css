@@ -40,8 +40,8 @@ body {
   letter-spacing: .06rem;
   min-height: 100%;
   min-height: 100vh;
-  max-width: 48.5rem;
-  max-width: calc(43rem + 6vw);
+  max-width: 48rem;
+  max-width: calc(40rem + 9vw);
   padding: 4rem 1rem;
   padding: 10.3vmin 4vmin;
 }
