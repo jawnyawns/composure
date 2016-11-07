@@ -2,7 +2,7 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Space Mono", monospace;
   line-height: 2.1;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
@@ -39,7 +39,6 @@ body {
   margin: 0 auto;
   font-size: .975rem;
   letter-spacing: .06rem;
-  /* with fallbacks */
   min-height: 100%;
   min-height: 100vh;
   max-width: 42rem;
