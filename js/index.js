@@ -30,9 +30,10 @@ window.addEventListener("load", () => {
     setTheme(localStorage._m_thm)
   })
 
-  // update storage
+  // on editor input
   $editor.addEventListener("input", e => {
-    populateStorage("_m_txt", $editor.innerText)
+    populateStorage("_m_txt", $editor.innerText) // update storage
+    maybeScroll($editor) // scroll down when appropriate
   })
 
   // window keydown
@@ -49,7 +50,6 @@ window.addEventListener("load", () => {
 
   // editor keyup
   $editor.addEventListener("keyup", e => {
-    maybeScroll($editor) // scroll down when appropriate
     maybeEmpty($editor)  // empties editor when visually empty, so placeholder reappears
   })
 
