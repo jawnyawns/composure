@@ -1,10 +1,7 @@
-# Todo
-- big blue caret
-	- hide native caret
-	- blinking
-- offline support & resync
-- webapp capable
-- improve support (animationframe, innertext, etc)
+# Do Now
+- minimize commands further
+- consider dif color schemas
+- tackle bugs
 
 # Bugs
 - prompt user to save before saving
@@ -15,8 +12,14 @@
 - FF: Press enter, must then press delete twice to get back to top
 - Mobile Chrome: Font load fails
 - Chromebook: Font fails, CTRL+S fails, CTRL+M fails
+- type in a really long string and try scrubbing it with the arrow keys
 
 # Do later
+- sync and remember theme choice
+- offline support & resync
+- webapp capable
+- improve support (animationframe, innertext, etc)
+- load fullscreen in mobile
 - explore other names
 - explore monospace fonts
 - tweaks & refactoring & testing

@@ -5,6 +5,8 @@
 let $editor
 let $caret
 let caretFrame
+let sustainCaret
+let caretTimeBuff
 
 window.addEventListener("load", () => {
   // cache editor dom
@@ -36,6 +38,7 @@ window.addEventListener("load", () => {
   $editor.addEventListener("keydown", e => {
     handleTabs(e) // insert actual tabs instead of default tabbing behavior
     handleRets(e, $editor) // fixes line break weirdness in FF & Safari
+    showCaret($caret) // stop blinking
   })
 
   // editor keyup
@@ -47,6 +50,7 @@ window.addEventListener("load", () => {
   // editor paste
   $editor.addEventListener("paste", e => {
     handlePaste(e) // insert clipboard content w/o styling
+    showCaret($caret) // stop blinking
   })
 
   // editor focus
@@ -61,9 +65,16 @@ window.addEventListener("load", () => {
     cancelAnimationFrame(caretFrame)
   })
 
+  // editor mouseclicks
+  $editor.addEventListener("click", e => {
+    showCaret($caret) // stop blinking
+  })
+
   maybeEmpty($editor) // empties editor when visually empty, so placeholder reappears
   $editor.hidden = false // display editor
   $editor.focus() // focus editor
+  blinkCaret($caret) // setup the cursor for blinking
+  sustainCaret = false
 })
 
 
@@ -92,6 +103,25 @@ const moveCaret = () => {
   else
     $caret.hidden = true
   caretFrame = requestAnimationFrame(moveCaret)
+}
+
+const blinkCaret = el => {
+  let blinkme = setInterval(() => {
+    if (el.hidden || sustainCaret) return
+    if (el.style.opacity == 1)
+      el.style.opacity = 0
+    else
+      el.style.opacity = 1
+  }, 570)
+}
+
+const showCaret = el => {
+  el.style.opacity = 1
+  sustainCaret = true
+  if (caretTimeBuff != null) clearTimeout(caretTimeBuff)
+  caretTimeBuff = setTimeout(() => {
+    sustainCaret = false
+  }, 570)
 }
 
 
