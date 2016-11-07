@@ -2,7 +2,7 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  font-family: "Space Mono", monospace;
+  font-family: "Roboto Mono", monospace;
   line-height: 2.1;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
@@ -17,7 +17,7 @@ body {
 .night {
   background-color: #212121;
   color: transparent;
-  text-shadow: 0 0 0 #d3d3d3;
+  text-shadow: 0 0 0 #e3e3e3;
 }
 
 [contenteditable]:empty:before {
@@ -31,6 +31,7 @@ body {
 ::-moz-selection { background: rgba(0,136,255,.5) }
 
 #editor {
+  position: relative;
   outline: 0;
   background: none;
   white-space: pre-wrap;

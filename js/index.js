@@ -14,19 +14,25 @@ window.addEventListener("load", () => {
   $caret = document.getElementById("caret")
 
   // content persistance
-  if(!localStorage.getItem('_mwcs'))
-    populateStorage("_mwcs", "") // setup new storage for entry
-  else
-    populateEditor($editor, localStorage._mwcs) // load stored content into editor
+  if(!localStorage.getItem('_m_txt')) {
+    populateStorage("_m_txt", "") // setup new storage for entry
+  } else {
+    populateEditor($editor, localStorage._m_txt) // load stored content into editor
+  } if(!localStorage.getItem('_m_thm')) {
+    populateStorage("_m_thm", "day") // setup new storage for entry
+  } else {
+    setTheme(localStorage._m_thm) // set stored theme
+  }
 
   // sync editor content between tabs
   window.addEventListener("storage", e => {
-    populateEditor($editor, e.newValue)
+    populateEditor($editor, localStorage._m_txt)
+    setTheme(localStorage._m_thm)
   })
 
   // update storage
   $editor.addEventListener("input", e => {
-    populateStorage("_mwcs", $editor.innerText)
+    populateStorage("_m_txt", $editor.innerText)
   })
 
   // window keydown
@@ -90,6 +96,10 @@ const populateEditor = (el, str) => {
   el.innerText = str
 }
 
+const setTheme = (theme) => {
+  document.body.className = theme
+}
+
 
 
 
@@ -97,7 +107,7 @@ const populateEditor = (el, str) => {
 
 const moveCaret = () => {
   $caret.style.left = getCaretCoords($editor).x-1 + "px"
-  $caret.style.top = getCaretCoords($editor).y-1 + "px"
+  $caret.style.top = getCaretCoords($editor).y-2 + "px"
   if (document.getSelection().toString() == "")
     $caret.hidden = false
   else
@@ -134,7 +144,7 @@ const handleCmds = (e, el) => {
   if (k < 65 || k > 90) return
   const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
   switch(cmd) {
-    case "⌘M":
+    case "⌘E":
       e.preventDefault()
       toggleTheme()
       break
@@ -149,10 +159,13 @@ const handleCmds = (e, el) => {
 
 const toggleTheme = () => {
   const body = document.body
-  if (body.className == "day")
+  if (body.className == "day") {
     body.className = "night"
-  else
+    populateStorage("_m_thm", "night") // update storage
+  } else {
     body.className = "day"
+    populateStorage("_m_thm", "day") // update storage
+  }
 }
 
 const exportDoc = el => {
