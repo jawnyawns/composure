@@ -1,20 +1,19 @@
 # Do Now
 - minimize commands further
-- consider dif color schemas
-- tackle bugs
+- Safari: CMD + M fails to preventDefault, does not toggle theme
+- Chromebook: Font fails, CTRL+S fails, CTRL+M fails
+- prompt user to save (location, name, etc) before saving to disc
+- Safari: Exporting doc fails
 
 # Bugs
-- prompt user to save before saving
-- Safari: CMD + M fails to preventDefault, does not toggle theme
-- Safari: Exporting doc fails
 - Safari: Press enter, delete, and enter again
 - Safari: Press enter, cmd+A, delete, and enter again
 - FF: Press enter, must then press delete twice to get back to top
 - Mobile Chrome: Font load fails
-- Chromebook: Font fails, CTRL+S fails, CTRL+M fails
 - type in a really long string and try scrubbing it with the arrow keys
 
 # Do later
+- tackle bugs
 - sync and remember theme choice
 - offline support & resync
 - webapp capable

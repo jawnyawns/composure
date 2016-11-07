@@ -11,13 +11,13 @@ body {
 .day {
   background-color: #f5f5f5;
   color: transparent;
-  text-shadow: 0 0 0 #252525;
+  text-shadow: 0 0 0 #272727;
 }
 
 .night {
   background-color: #212121;
   color: transparent;
-  text-shadow: 0 0 0 #e2e2e2;
+  text-shadow: 0 0 0 #d3d3d3;
 }
 
 [contenteditable]:empty:before {
@@ -27,8 +27,8 @@ body {
   opacity: .43;
 }
 
-::selection      { background: rgba(3,180,225,.4) }
-::-moz-selection { background: rgba(3,180,225,.4) }
+::selection      { background: rgba(0,136,255,.5) }
+::-moz-selection { background: rgba(0,136,255,.5) }
 
 #editor {
   outline: 0;
@@ -48,7 +48,7 @@ body {
 }
 
 #caret {
-  background: rgba(7,194,218,.8);
+  background: #08f;
   position: fixed;
   height: 1.5rem;
   width: 3px;
