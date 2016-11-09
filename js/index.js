@@ -169,7 +169,7 @@ const toggleTheme = () => {
 }
 
 const exportDoc = el => {
-  try { download(el.innerText, "mono.txt", "text/plain") }
+  try { download(el.innerText, "tact-download.txt", "text/plain") }
   catch (err) { alert("An error occurred.") }
 }
 

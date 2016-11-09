@@ -2,7 +2,7 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  font-family: "Space Mono", "Roboto Mono", monospace;
+  font-family: "Space Mono", "Lucida Console", "Monaco", "Courier", monospace;
   line-height: 2.1;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
