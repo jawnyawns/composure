@@ -62,10 +62,10 @@ body {
 }
 
 /* desktops */
-@media (min-width: 1250px) {
+@media (min-width: 1150px) {
   #editor {
     font-size: 1.02rem;
-    max-width: 54rem;
+    max-width: 52rem;
     padding: 4.5rem 1.5rem;
   }
 }

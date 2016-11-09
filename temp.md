@@ -1,4 +1,6 @@
 # Do Now
+- tweak spacing
+- explore other naming options
 - Chromebook: Font fails, key commands fail!
 - prompt user to save (location, name, etc) before saving to disc
 - Safari: Exporting doc fails
@@ -19,6 +21,7 @@
 - All: double click does not highlight text
 - All: try hitting tab/space a lot right now!
 - All: type in a really long string and try scrubbing it with the arrow keys
+- All: quickly click left then right button
 - Safari: Press enter, delete, and enter again / Press enter, cmd+A, delete, and enter again
 - Safari: font blinks weirdly with cursor blink
 - Safari: click near corner of writing zone, cursor jumps to top right hand corner
