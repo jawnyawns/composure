@@ -1,5 +1,4 @@
 # Do Now
-- Make caret taller - refer to iA
 - consider: higher dependence on media queries! (no dynamic viewports?)
   - bug: fails to account for tablet stutter based on vmin
 - Chromebook: Font fails, key commands fail!
@@ -18,6 +17,7 @@
 - discrete text ad, carbon? / donate / melink?
 
 # Bugs
+- All: double click does not highlight text
 - All: try hitting tab/space a lot right now!
 - All: type in a really long string and try scrubbing it with the arrow keys
 - Safari: Press enter, delete, and enter again / Press enter, cmd+A, delete, and enter again

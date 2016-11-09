@@ -107,7 +107,7 @@ const setTheme = (theme) => {
 
 const moveCaret = () => {
   $caret.style.left = getCaretCoords($editor).x-2 + "px"
-  $caret.style.top = getCaretCoords($editor).y-1 + "px"
+  $caret.style.top = getCaretCoords($editor).y-3 + "px"
   if (document.getSelection().toString() == "")
     $caret.hidden = false
   else
