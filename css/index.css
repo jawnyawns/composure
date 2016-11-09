@@ -37,25 +37,43 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   margin: 0 auto;
-  letter-spacing: .06rem;
-  min-height: 100%;
-  min-height: 100vh;
-  max-width: 48rem;
-  max-width: calc(40rem + 9vw);
-  padding: 4rem 1rem;
-  padding: 10.3vmin 4vmin;
+  letter-spacing: .06em;
+
+  /* mobile first */
+  font-size: .9rem;
+  padding: 2.75rem .75rem;
 }
 
-@media (max-width: 600px) {
+/* tablets */
+@media (min-width: 500px) {
   #editor {
-    padding: 2.75rem .75rem;
+    max-width: 41.5rem;
+    padding: 3.15rem 1rem;
+  }
+}
+
+/* mini desks */
+@media (min-width: 870px) {
+  #editor {
+    font-size: .95rem;
+    max-width: 48rem;
+    padding: 4.15rem 1.18rem;
+  }
+}
+
+/* desktops */
+@media (min-width: 1250px) {
+  #editor {
+    font-size: 1.02rem;
+    max-width: 54rem;
+    padding: 4.5rem 1.5rem;
   }
 }
 
 #caret {
   background: #08f;
   position: fixed;
-  height: 1.8rem;
+  height: 1.7rem;
   width: 3px;
 }
 

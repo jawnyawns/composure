@@ -1,6 +1,4 @@
 # Do Now
-- consider: higher dependence on media queries! (no dynamic viewports?)
-  - bug: fails to account for tablet stutter based on vmin
 - Chromebook: Font fails, key commands fail!
 - prompt user to save (location, name, etc) before saving to disc
 - Safari: Exporting doc fails
@@ -9,6 +7,7 @@
 - webapp capable
 
 # Do later
+- final logos, color bars, etc
 - tweaks & refactoring & testing
 - improve support (innertext, contenteditable 'input' event)
 - load fullscreen in mobile
