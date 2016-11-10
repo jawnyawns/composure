@@ -41,14 +41,14 @@ body {
 
   /* mobile first */
   font-size: .9rem;
-  padding: 2.75rem .75rem;
+  padding: 2.2rem .75rem;
 }
 
 /* tablets */
 @media (min-width: 500px) {
   #editor {
     max-width: 41.5rem;
-    padding: 3.15rem 1rem;
+    padding: 3rem 1rem;
   }
 }
 
@@ -56,17 +56,17 @@ body {
 @media (min-width: 870px) {
   #editor {
     font-size: .95rem;
-    max-width: 48rem;
-    padding: 4.15rem 1.18rem;
+    max-width: 46rem;
+    padding: 3.8rem 1.18rem;
   }
 }
 
 /* desktops */
-@media (min-width: 1150px) {
+@media (min-width: 1120px) {
   #editor {
     font-size: 1.02rem;
-    max-width: 52rem;
-    padding: 4.5rem 1.5rem;
+    max-width: 50rem;
+    padding: 4.3rem 1.5rem;
   }
 }
 
