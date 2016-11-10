@@ -1,6 +1,9 @@
 # Do Now
-- tweak spacing
-- explore other naming options
+- reduce functionality?
+- other names
+  - q
+  - composure
+  - tact
 - Chromebook: Font fails, key commands fail!
 - prompt user to save (location, name, etc) before saving to disc
 - Safari: Exporting doc fails

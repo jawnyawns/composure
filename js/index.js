@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
 
   // window keydown
   window.addEventListener("keydown", e => {
-    handleCmds(e, $editor) // disable contenteditable shortcuts, enable editor shortcuts
+    handleCmds(e) // disable contenteditable shortcuts, enable editor shortcuts
   })
 
   // editor keydown
@@ -139,7 +139,7 @@ const showCaret = el => {
 
 /* KEYBOARD COMMANDS -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-const handleCmds = (e, el) => {
+const handleCmds = e => {
   const k = e.keyCode
   if (k < 65 || k > 90) return
   const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
@@ -150,7 +150,7 @@ const handleCmds = (e, el) => {
       break
     case "⌘S":
       e.preventDefault()
-      exportDoc(el)
+      exportDoc($editor.innerText)
       break
     case "⌘B": e.preventDefault(); break
     case "⌘I": e.preventDefault(); break
@@ -168,8 +168,8 @@ const toggleTheme = () => {
   }
 }
 
-const exportDoc = el => {
-  try { download(el.innerText, "tact-download.txt", "text/plain") }
+const exportDoc = blob => {
+  try { download(blob, "tact-download.txt", "text/plain") }
   catch (err) { alert("An error occurred.") }
 }
 
