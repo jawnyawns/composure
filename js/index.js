@@ -169,7 +169,7 @@ const toggleTheme = () => {
 }
 
 const exportDoc = blob => {
-  try { download(blob, "tact-download.txt", "text/plain") }
+  try { download(blob, "composure-download.txt", "text/plain") }
   catch (err) { alert("An error occurred.") }
 }
 
