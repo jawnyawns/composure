@@ -30,6 +30,13 @@ body {
 ::selection      { background: rgba(0,136,255,.5) }
 ::-moz-selection { background: rgba(0,136,255,.5) }
 
+#caret {
+  background: #08f;
+  position: fixed;
+  height: 1.7em;
+  width: 3px;
+}
+
 #editor {
   position: relative;
   outline: 0;
@@ -40,8 +47,9 @@ body {
   letter-spacing: .06em;
 
   /* mobile first */
-  font-size: .9rem;
   padding: 2.2rem .75rem;
+} #editor, #caret {
+  font-size: .9rem;
 }
 
 /* tablets */
@@ -54,8 +62,11 @@ body {
 
 /* mini desks */
 @media (min-width: 870px) {
-  #editor {
+  #editor,
+  #caret {
     font-size: .95rem;
+  }
+  #editor {
     max-width: 46rem;
     padding: 3.8rem 1.18rem;
   }
@@ -63,18 +74,14 @@ body {
 
 /* desktops */
 @media (min-width: 1120px) {
-  #editor {
+  #editor,
+  #caret {
     font-size: 1.02rem;
+  }
+  #editor {
     max-width: 50rem;
     padding: 4.3rem 1.5rem;
   }
-}
-
-#caret {
-  background: #08f;
-  position: fixed;
-  height: 1.7rem;
-  width: 3px;
 }
 
 @media print {
