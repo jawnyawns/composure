@@ -1,21 +1,25 @@
 # Do Now
-- reduce functionality?
+- Remove styles on copying from Composure to somewhere else.
+- Reduce functionality?
 - Chromebook: Font fails, key commands fail!
-- prompt user to save (location, name, etc) before saving to disc
+- Prompt user to save (location, name, etc) before saving to disc
 - Safari: Exporting doc fails
-- add ability to drag and drop in text files
-- offline support & resync
-- webapp capable
+- Add ability to drag and drop in text files
+- Offline support & resync
+- Webapp capable
 
 # Do later
+- composure.cc | johnchinjew.com/composure | composure.johnchinjew.com
 - final logos, color variances, etc
 - tweaks & refactoring & testing
-- improve support (innertext, contenteditable 'input' event)
-  - http://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent
-- load fullscreen in mobile
+- improve support (innertext, contenteditable 'input' event): goo.gl/sDWGEG
+- load fullscreen in mobile (no nav bar on top)
 - fill in extras (social meta)
 - add info page to website
 - discrete text ad, carbon? / donate / melink?
+- delete LF twitter
+- destroy bitly link
+- destroy LF website: codepen & push2
 
 # Bugs
 - All: double click does not highlight text
@@ -27,21 +31,3 @@
 - Safari: font blinks weirdly with cursor blink
 - Safari: click near corner of writing zone, cursor jumps to top right hand corner
 - FF: Press enter, must then press delete twice to get back to top
-
-# LF
-- delete lf twitter
-- destroy bitly link
-- destroy lf website: codepen & push2
-
-# Names
-- Q
-- Mn
-- Edi
-- Let
-- Composure
-- Char
-- Kern
-- Void
-- Typed
-- Slate
-- Composure
