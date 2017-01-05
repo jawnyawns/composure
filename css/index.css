@@ -9,13 +9,13 @@ body {
 }
 
 .day {
-  background-color: #f5f5f5;
+  background-color: #f4f4f3;
   color: transparent;
   text-shadow: 0 0 0 #272727;
 }
 
 .night {
-  background-color: #212121;
+  background-color: #232322;
   color: transparent;
   text-shadow: 0 0 0 #e3e3e3;
 }
@@ -27,11 +27,11 @@ body {
   opacity: .43;
 }
 
-::selection      { background: rgba(0,136,255,.5) }
-::-moz-selection { background: rgba(0,136,255,.5) }
+::selection      { background: rgba(0,117,255,.53) }
+::-moz-selection { background: rgba(0,117,255,.53) }
 
 #caret {
-  background: #08f;
+  background: #00a0ff;
   position: fixed;
   height: 1.7em;
   width: 3px;

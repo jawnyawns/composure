@@ -1,5 +1,4 @@
 # Do Now
-- Remove styles on copying from Composure to somewhere else.
 - Reduce functionality?
 - Chromebook: Font fails, key commands fail!
 - Prompt user to save (location, name, etc) before saving to disc
@@ -10,7 +9,7 @@
 
 # Do later
 - composure.cc | johnchinjew.com/composure | composure.johnchinjew.com
-- final logos, color variances, etc
+- final logo
 - tweaks & refactoring & testing
 - improve support (innertext, contenteditable 'input' event): goo.gl/sDWGEG
 - load fullscreen in mobile (no nav bar on top)
@@ -31,3 +30,6 @@
 - Safari: font blinks weirdly with cursor blink
 - Safari: click near corner of writing zone, cursor jumps to top right hand corner
 - FF: Press enter, must then press delete twice to get back to top
+
+# Less important
+- Remove styles on copying from Composure to somewhere else.
