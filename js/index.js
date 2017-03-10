@@ -6,7 +6,7 @@ let $editor
 let $caret
 let caretFrame
 let sustainCaret
-let caretTimeBuff
+let caretTimer
 
 window.addEventListener("load", () => {
   // cache editor dom
@@ -15,30 +15,30 @@ window.addEventListener("load", () => {
 
   // content persistance
   if(!localStorage.getItem('_m_txt')) {
-    populateStorage("_m_txt", "") // setup new storage for entry
+    pushLocal("_m_txt", "") // setup new storage for entry
   } else {
-    populateEditor($editor, localStorage._m_txt) // load stored content into editor
+    pullEditor($editor, localStorage._m_txt) // load stored content into editor
   } if(!localStorage.getItem('_m_thm')) {
-    populateStorage("_m_thm", "day") // setup new storage for entry
+    pushLocal("_m_thm", "day") // setup new storage for entry
   } else {
-    setTheme(localStorage._m_thm) // set stored theme
+    pullTheme(localStorage._m_thm) // set stored theme
   }
 
   // sync editor content between tabs
   window.addEventListener("storage", e => {
-    populateEditor($editor, localStorage._m_txt)
-    setTheme(localStorage._m_thm)
+    pullEditor($editor, localStorage._m_txt)
+    pullTheme(localStorage._m_thm)
   })
 
   // on editor input
   $editor.addEventListener("input", e => {
-    populateStorage("_m_txt", $editor.innerText) // update storage
+    pushLocal("_m_txt", $editor.innerText) // update storage
     maybeScroll($editor) // scroll down when appropriate
   })
 
   // window keydown
   window.addEventListener("keydown", e => {
-    handleCmds(e) // disable contenteditable shortcuts, enable editor shortcuts
+    handleCmds(e) // custom shortcuts
   })
 
   // editor keydown
@@ -88,17 +88,9 @@ window.addEventListener("load", () => {
 
 /* STORAGE -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-const populateStorage = (ref, str) => {
-  localStorage.setItem(ref, str)
-}
-
-const populateEditor = (el, str) => {
-  el.innerText = str
-}
-
-const setTheme = (theme) => {
-  document.body.className = theme
-}
+const pushLocal = (key, value) => localStorage.setItem(key, value)
+const pullEditor = (editor, textContent) => editor.innerText = textContent
+const pullTheme = (themeClass) => document.body.className = themeClass
 
 
 
@@ -128,30 +120,26 @@ const blinkCaret = el => {
 const showCaret = el => {
   el.style.opacity = 1
   sustainCaret = true
-  if (caretTimeBuff != null) clearTimeout(caretTimeBuff)
-  caretTimeBuff = setTimeout(() => {
-    sustainCaret = false
-  }, 570)
+  if (caretTimer != null) clearTimeout(caretTimer)
+  caretTimer = setTimeout(() => sustainCaret = false, 570)
 }
 
 
 
 
-/* KEYBOARD COMMANDS -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+/* HIGHLIGHT LINE -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+
+
+
+
+
+/* EDITOR FEATURES -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 const handleCmds = e => {
   const k = e.keyCode
   if (k < 65 || k > 90) return
   const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
   switch(cmd) {
-    case "⌘E":
-      e.preventDefault()
-      toggleTheme()
-      break
-    case "⌘S":
-      e.preventDefault()
-      exportDoc($editor.innerText)
-      break
     case "⌘B": e.preventDefault(); break
     case "⌘I": e.preventDefault(); break
   }
@@ -161,16 +149,11 @@ const toggleTheme = () => {
   const body = document.body
   if (body.className == "day") {
     body.className = "night"
-    populateStorage("_m_thm", "night") // update storage
+    pushLocal("_m_thm", "night") // update storage
   } else {
     body.className = "day"
-    populateStorage("_m_thm", "day") // update storage
+    pushLocal("_m_thm", "day") // update storage
   }
-}
-
-const exportDoc = blob => {
-  try { download(blob, "composure-download.txt", "text/plain") }
-  catch (err) { alert("An error occurred.") }
 }
 
 

@@ -2,7 +2,7 @@ html { box-sizing: border-box }
 *, *:before, *:after { box-sizing: inherit }
 
 body {
-  font-family: "Space Mono", "Lucida Console", "Monaco", "Courier", monospace;
+  font-family: "Roboto Mono", "Lucida Console", "Monaco", "Courier", monospace;
   line-height: 2.1;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
@@ -21,7 +21,7 @@ body {
 }
 
 [contenteditable]:empty:before {
-  content: attr(t);
+  content: attr(placeholder);
   display: block;
   color: #8a8a8a;
   opacity: .43;
@@ -44,7 +44,6 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   margin: 0 auto;
-  letter-spacing: .06em;
 
   /* mobile first */
   padding: 2.2rem .75rem;
