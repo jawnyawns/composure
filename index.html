@@ -2,31 +2,62 @@
 <html lang="en">
   <head>
 
+    <!-- Meta -->
     <meta charset="UTF-8">
     <title>Composure</title>
-    <meta name="description" content="A pure text editor.">
-    <meta name="author" content="John Chin-Jew, hi@johnchinjew.com">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="icon"
-      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMA
-            AAADAAQMAAABoEv5EAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRS
-            TlMAQObYZgAAAC5JREFUWMPt0yEBAAAIwDAa0L8lDaAAHsFmr
-            x8B3MpelLAF8KAH8aAHwYMehI8GlVPsPsgDuaoAAAAASUVORK
-            5CYII=">
+    <meta name="description" content="A pure, super-minimal text editor.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- CSS -->
+    <style>
+      @import "https://fonts.googleapis.com/css?family=Cousine:400|Roboto:400,700";
+      @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css";
+      @import "css/app.css";
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png">
 
   </head>
-  <body class="day">
+  <body>
 
-    <div id="editor" placeholder="Composure: A pure text editor, by John Chin-Jew." contenteditable hidden></div>
-    <div id="caret" hidden></div>
+    <!-- App Wrapper -->
+    <div id="app" class="day" hidden>
 
-    <script src="js/index.js"></script>
+      <!-- App Objects -->
+      <div id="editor" data-placeholder="..." contenteditable></div>
+      <div id="caret"></div>
+
+      <!-- UI -->
+      <a id="about-modal-link"  class="ui" href="#about">ABOUT</a>
+      <button id="mode-btn" class="ui">NIGHT MODE</button>
+      <span id="stats-label" class="ui">
+        <span id="autosave-label">SAVED</span> · <span id="wordcount-label">0 WORDS</span>
+      </span>
+
+    </div>
+
+    <!-- About Modal -->
+    <section id="about-modal" hidden>
+      <a id="about-modal-close" class="ui" href="#">CLOSE</a>
+      <div>
+        <h1>Composure</h1>
+        <p>A pure, super-minimal text editor.</p>
+        <h2>By the way</h2>
+        <ul>
+          <li>Your writing is automatically saved to the browser.</li>
+          <li>Click <i>Day/Night Mode</i> to toggle between themes.</li>
+        </ul>
+        <h2>Support</h2>
+        <p>Like Composure? <a href="javascript:void();" target="_blank">Donate</a>!</p>
+        <h2>Cheers</h2>
+        <p>Made & used by <a href="http://twitter.com/johnchinjew" target="_blank">John Chin-Jew</a>.</p>
+        <!-- TODO: [ INSERT AD ] -->
+      </div>
+    </section>
+
+    <!-- JS -->
+    <script src="js/app.js"></script>
 
   </body>
 </html>
