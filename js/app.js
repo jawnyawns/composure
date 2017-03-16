@@ -128,7 +128,7 @@ const init = () => {
 =================================================================== */
 
 const pushLocal = (key, value) => localStorage.setItem(key, value)
-const pullTheme = (className) => $app.className = className
+const pullTheme = (className) => document.body.className = className
 const pullEditor = (el, textContent) => {
   el.innerText = textContent
   normalizeLinebreaks(el.innerText)
@@ -213,11 +213,11 @@ const handleCmds = e => {
 }
 
 const toggleTheme = () => {
-  if ($app.className == "day") {
-    $app.className = "night"
+  if (document.body.className == "day") {
+    document.body.className = "night"
     pushLocal("_c_thm", "night") // update storage
   } else {
-    $app.className = "day"
+    document.body.className = "day"
     pushLocal("_c_thm", "day") // update storage
   }
   $editor.dataset.placeholder = "Oohhh... " + localStorage._c_thm + " mode!"

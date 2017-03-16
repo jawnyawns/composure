@@ -7,7 +7,11 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
-  background: silver;
+}
+
+body {
+  -webkit-transition: background-color 270ms;
+          transition: background-color 270ms;
 }
 
 a {
@@ -43,12 +47,6 @@ li { margin-left: -1.5rem }
 
 /* MAIN APP
 =================================================================== */
-
-#app {
-  min-height: 100vh;
-  -webkit-transition: background-color 270ms;
-          transition: background-color 270ms;
-}
 
 #editor {
   font-family: "Cousine", monospace;
@@ -152,12 +150,12 @@ li { margin-left: -1.5rem }
 /* MODE SPECIFIC COLORS
 =================================================================== */
 
-.day            { background: #f7f7f6; text-shadow: 0 0 0 #202020 }
-.night          { background: #1a1a19; text-shadow: 0 0 0 #c9c9c9 }
-.day   > .ui    { background: #f7f7f6; color: #0aaecd }
-.night > .ui    { background: #1a1a19; color: #0ab5c7 }
-.day   > #caret { background: #00afec }
-.night > #caret { background: #0aaecd }
+.day          { background: #f7f7f6; text-shadow: 0 0 0 #202020 }
+.night        { background: #1a1a19; text-shadow: 0 0 0 #c9c9c9 }
+.day   .ui    { background: #f7f7f6; color: #0aaecd }
+.night .ui    { background: #1a1a19; color: #0ab5c7 }
+.day   #caret { background: #00afec }
+.night #caret { background: #0aaecd }
 
 
 
