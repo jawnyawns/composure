@@ -43,13 +43,13 @@ window.addEventListener("load", () => {
 
   // sync editor content between tabs
   window.addEventListener("storage", e => {
-    pullEditor($editor, localStorage._m_txt)
-    pullTheme(localStorage._m_thm)
+    pullEditor($editor, localStorage._c_txt)
+    pullTheme(localStorage._c_thm)
   })
 
   // on editor input
   $editor.addEventListener("input", e => {
-    pushLocal("_m_txt", $editor.innerText)
+    pushLocal("_c_txt", $editor.innerText)
     maybeScroll($editor)
     cycleAutosaveLabel($autosaveLabel) // faux save label update
     updateWordcountLabel($wordcountLabel, $editor.innerText)
@@ -106,10 +106,10 @@ window.addEventListener("load", () => {
 
 const init = () => {
   // content persistance
-  if(!localStorage.getItem('_m_txt')) pushLocal("_m_txt", "") // setup new storage for entry
-  else pullEditor($editor, localStorage._m_txt) // load stored content into editor
-  if(!localStorage.getItem('_m_thm')) pushLocal("_m_thm", "day") // setup new storage for entry
-  else pullTheme(localStorage._m_thm) // set stored theme
+  if(!localStorage.getItem('_c_txt')) pushLocal("_c_txt", "") // setup new storage for entry
+  else pullEditor($editor, localStorage._c_txt) // load stored content into editor
+  if(!localStorage.getItem('_c_thm')) pushLocal("_c_thm", "day") // setup new storage for entry
+  else pullTheme(localStorage._c_thm) // set stored theme
   // visual
   maybeEmpty($editor)
   $app.hidden = false
@@ -119,6 +119,7 @@ const init = () => {
   $autosaveLabel.innerText = "SAVED " + time12()
   updateWordcountLabel($wordcountLabel, $editor.innerText)
   maybeRandPlaceholder($editor) // random placeholder
+  updateMetaThemeColor(localStorage._c_thm)
 }
 
 
@@ -214,12 +215,13 @@ const handleCmds = e => {
 const toggleTheme = () => {
   if ($app.className == "day") {
     $app.className = "night"
-    pushLocal("_m_thm", "night") // update storage
+    pushLocal("_c_thm", "night") // update storage
   } else {
     $app.className = "day"
-    pushLocal("_m_thm", "day") // update storage
+    pushLocal("_c_thm", "day") // update storage
   }
-  $editor.dataset.placeholder = "Oohhh... " + localStorage._m_thm + " mode!"
+  $editor.dataset.placeholder = "Oohhh... " + localStorage._c_thm + " mode!"
+  updateMetaThemeColor(localStorage._c_thm)
 }
 
 
@@ -301,6 +303,17 @@ const time12 = () => {
   h = h ? h : 12
   m = m < 10 ? "0" + m : m
   return h + ":" + m + t
+}
+
+const updateMetaThemeColor = theme => {
+  let c
+  if (theme == "day") c = "#f7f7f6"
+  else if (theme == "night") c = '#1a1a19'
+  document.querySelector('meta[name=theme-color]').remove()
+  let meta = document.createElement('meta');
+  meta.name = "theme-color"
+  meta.content = c
+  document.getElementsByTagName('head')[0].appendChild(meta);
 }
 
 const getCaretIndex = el => {

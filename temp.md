@@ -1,8 +1,11 @@
 # Do
+- Mobile text input jumps to far because of editor height
+- Firefox/safari placeholder bugs galore...
 - Tracker, Ads, support link (3rd party)
 - Web App capable, Offline Support & Re-Sync
 - Secure domain: composure.cc | composure.johnchinjew.com
 - Improve support (remove use of 'innerText' and 'input' event)
+- Create production/dev version
 
 # Non-critical Bugs
 - Sometimes ⌘Z does not work

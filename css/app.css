@@ -16,7 +16,7 @@ a {
   box-shadow: 0 1px 0 black;
 }
 
-li { margin-left: -2.5rem }
+li { margin-left: -1.5rem }
 
 
 
@@ -144,6 +144,7 @@ li { margin-left: -2.5rem }
   top: 0;
   right: 0;
   box-shadow: none;
+  color: #0aaecd;
 }
 
 
@@ -151,9 +152,9 @@ li { margin-left: -2.5rem }
 /* MODE SPECIFIC COLORS
 =================================================================== */
 
-.day            { background: #fcfcfb; text-shadow: 0 0 0 #353522 }
-.night          { background: #1a1a19; text-shadow: 0 0 0 #d3d3d3 }
-.day   > .ui    { background: #fcfcfb; color: #0aaecd }
+.day            { background: #f7f7f6; text-shadow: 0 0 0 #202020 }
+.night          { background: #1a1a19; text-shadow: 0 0 0 #c9c9c9 }
+.day   > .ui    { background: #f7f7f6; color: #0aaecd }
 .night > .ui    { background: #1a1a19; color: #0ab5c7 }
 .day   > #caret { background: #00afec }
 .night > #caret { background: #0aaecd }
