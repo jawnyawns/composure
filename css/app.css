@@ -117,6 +117,7 @@ li { margin-left: -1.5rem }
   top: 0; left: 0;
   bottom: 0; right: 0;
   background: #fff;
+  text-shadow: none;
 }
 
 #about-modal > div {
@@ -143,6 +144,7 @@ li { margin-left: -1.5rem }
   right: 0;
   box-shadow: none;
   color: #0aaecd;
+  background: #fff;
 }
 
 

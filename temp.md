@@ -1,10 +1,9 @@
 # Do
-- Firefox/safari placeholder bugs galore...
-- Tracker, Ads, support link (3rd party)
-- Web App capable, Offline Support & Re-Sync
-- Secure domain: composure.cc | composure.johnchinjew.com
+- Ads, support link (3rd party)
+- Webapp (add to homescreen, fullscreen), Offline Support & Resync: goo.gl/ChAXVt
 
 # Later
+- Firefox/safari placeholder bugs galore...
 - Sometimes ⌘Z does not work
 - Improve support (remove use of 'innerText' and 'input' event)
 - Caret starts at weird spot sometimes
