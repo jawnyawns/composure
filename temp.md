@@ -1,5 +1,4 @@
 # Do
-- Support link
 - Ads - pending
 - Release v1
 
