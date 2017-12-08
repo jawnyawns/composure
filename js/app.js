@@ -1,1 +1,380 @@
-"use strict";var $app=void 0,$editor=void 0,$caret=void 0,$modeBtn=void 0,$aboutBtnOpen=void 0,$aboutBtnClose=void 0,$autosaveLabel=void 0,$wordcountLabel=void 0,$aboutModal=void 0,caretFrame=void 0,sustainCaret=void 0,caretTimer=void 0,autosaveTimer=void 0;window.addEventListener("load",function(){$app=document.getElementById("app"),$editor=document.getElementById("editor"),$caret=document.getElementById("caret"),$modeBtn=document.getElementById("mode-btn"),$aboutBtnOpen=document.getElementById("about-modal-link"),$aboutBtnClose=document.getElementById("about-modal-close"),$autosaveLabel=document.getElementById("autosave-label"),$wordcountLabel=document.getElementById("wordcount-label"),$aboutModal=document.getElementById("about-modal"),window.addEventListener("storage",function(a){pullEditor($editor,localStorage._c_txt),pullTheme(localStorage._c_thm)}),$editor.addEventListener("input",function(a){pushLocal("_c_txt",$editor.innerText),maybeScroll($editor),cycleAutosaveLabel($autosaveLabel),updateWordcountLabel($wordcountLabel,$editor.innerText),maybeRandPlaceholder($editor)}),$editor.addEventListener("keydown",function(a){handleCmds(a),handleTabs(a),handleRets(a,$editor),showCaret($caret)}),$editor.addEventListener("keyup",function(a){return maybeEmpty($editor)}),$editor.addEventListener("paste",function(a){handlePaste(a),showCaret($caret)}),$editor.addEventListener("copy",function(a){return handleCopyOrCut(a)}),$editor.addEventListener("cut",function(a){return handleCopyOrCut(a)}),$editor.addEventListener("focus",function(a){$caret.hidden=!1,moveCaret($caret)}),$editor.addEventListener("blur",function(a){$caret.hidden=!0,cancelAnimationFrame(caretFrame)}),$editor.addEventListener("click",function(a){return showCaret($caret)}),$modeBtn.addEventListener("click",function(a){return toggleTheme()}),$aboutBtnOpen.addEventListener("click",function(a){return showAboutModal($aboutModal)}),$aboutBtnClose.addEventListener("click",function(a){return hideAboutModal($aboutModal)}),init()});var init=function(){localStorage.getItem("_c_txt")?pullEditor($editor,localStorage._c_txt):pushLocal("_c_txt",""),localStorage.getItem("_c_thm")?pullTheme(localStorage._c_thm):pushLocal("_c_thm","day"),maybeEmpty($editor),$app.hidden=!1,$editor.focus(),blinkCaret($caret),sustainCaret=!1,$autosaveLabel.innerText="SAVED "+time12(),updateWordcountLabel($wordcountLabel,$editor.innerText),maybeRandPlaceholder($editor),updateMetaThemeColor(localStorage._c_thm)},pushLocal=function(b,c){return localStorage.setItem(b,c)},pullTheme=function(b){document.body.className=b,"day"==b?$modeBtn.innerHTML="NIGHT MODE":$modeBtn.innerHTML="DAY MODE"},pullEditor=function(b,c){b.innerText=c,normalizeLinebreaks(b.innerText)},moveCaret=function a(){$caret.style.left=getCaretCoords($editor).x-2+"px",$caret.style.top=getCaretCoords($editor).y-8+"px",""==document.getSelection().toString()?$caret.hidden=!1:$caret.hidden=!0,caretFrame=requestAnimationFrame(a)},blinkCaret=function(b){setInterval(function(){b.hidden||sustainCaret||(1==b.style.opacity?b.style.opacity=0:b.style.opacity=1)},570)},showCaret=function(b){b.style.opacity=1,sustainCaret=!0,null!=caretTimer&&clearTimeout(caretTimer),caretTimer=setTimeout(function(){return sustainCaret=!1},570)},cycleAutosaveLabel=function(b){null!=autosaveTimer&&clearTimeout(autosaveTimer),autosaveTimer=setTimeout(function(){b.innerText="SAVING...",b.style.fontStyle="italic",setTimeout(function(){b.innerText="SAVED "+time12(),b.style.fontStyle="normal"},1200)},650)},updateWordcountLabel=function(b,c){var d=c.trim().split(/\s+/).length;""==c&&(d=0),b.innerText=d+" WORDS"},maybeRandPlaceholder=function(b){if(""==b.innerText){var c=["And so it begins...","Happy typing...","It was a dark and stormy night...","Once upon a time...","It was the best of times, it was the worst of times...","It was all just a dream..."];b.dataset.placeholder=c[getRandomIntInclusive(0,c.length-1)]}},handleCmds=function(b){var c=b.keyCode;if(!(c<65||c>90)){var d=(b.metaKey?"⌘":"")+String.fromCharCode(c);switch(d){case"⌘B":b.preventDefault();break;case"⌘I":b.preventDefault()}}},toggleTheme=function(){"day"==document.body.className?(document.body.className="night",$modeBtn.innerHTML="DAY MODE",pushLocal("_c_thm","night")):(document.body.className="day",$modeBtn.innerHTML="NIGHT MODE",pushLocal("_c_thm","day")),$editor.dataset.placeholder="Oohhh... "+localStorage._c_thm+" mode!",updateMetaThemeColor(localStorage._c_thm)},handleTabs=function(b){9===b.keyCode&&(b.preventDefault(),document.execCommand("insertText",!1,"     "))},handleRets=function(b,c){13===b.keyCode&&""==c.innerHTML&&navigator.userAgent.toLowerCase().indexOf("firefox")>-1&&(b.preventDefault(),document.execCommand("insertHTML",!1,"<br><br>"))},handlePaste=function(b){b.preventDefault();var c=(b.originalEvent||b).clipboardData.getData("text/plain");document.execCommand("insertText",!1,c),normalizeLinebreaks($editor.innerText)},handleCopyOrCut=function(b){var c=(b.originalEvent||b).clipboardData.getData("text/plain");b.clipboardData.setData("text/plain",c)},normalizeLinebreaks=function(b){for(var c=b.split(""),d=0;d<c.length;d++)"\\"===c[d]&&"n"===c[d+1]&&(c[d]="<b",c[d+1]="r>");return c.join()},maybeEmpty=function(b){"<br><br>"!=b.innerText&&"\n"!=b.innerText||(b.innerText="")},maybeScroll=function(b){getCaretIndex(b)>=b.textContent.length&&scrollTo(0,document.body.scrollHeight)},showAboutModal=function(b){return b.hidden=!1},hideAboutModal=function(b){return b.hidden=!0},getRandomIntInclusive=function(b,c){return b=Math.ceil(b),c=Math.floor(c),Math.floor(Math.random()*(c-b+1))+b},time12=function(){var b=new Date,c=b.getHours(),d=b.getMinutes(),e=c>=12?"PM":"AM";return c%=12,c=c?c:12,d=d<10?"0"+d:d,c+":"+d+e},updateMetaThemeColor=function(b){var c=void 0;"day"==b?c="#f7f7f6":"night"==b&&(c="#1a1a19"),document.querySelector("meta[name=theme-color]").remove();var d=document.createElement("meta");d.name="theme-color",d.content=c,document.getElementsByTagName("head")[0].appendChild(d)},getCaretIndex=function(b){var c=0;if("undefined"!=typeof window.getSelection){var d=window.getSelection().getRangeAt(0),e=d.cloneRange();e.selectNodeContents(b),e.setEnd(d.endContainer,d.endOffset),c=e.toString().length}else if("undefined"!=typeof document.selection&&"Control"!=document.selection.type){var f=document.selection.createRange(),g=document.body.createTextRange();g.moveToElementText(b),g.setEndPoint("EndToEnd",f),c=g.text.length}return c},getCaretCoords=function(b){var c=document.selection,d=void 0,e=void 0,f=0,g=0;if(c)"Control"!=c.type&&(d=c.createRange(),d.collapse(!0),f=d.boundingLeft,g=d.boundingTop);else if(window.getSelection&&(c=window.getSelection(),c.rangeCount&&(d=c.getRangeAt(0).cloneRange(),d.getClientRects&&""!=b.innerText&&(d.collapse(!0),d.getClientRects().length>0&&(e=d.getClientRects()[0],f=e.left,g=e.top)),0==f&&0==g))){var h=document.createElement("span");if(h.getClientRects){h.appendChild(document.createTextNode("​")),d.insertNode(h),e=h.getClientRects()[0],f=e.left,g=e.top;var i=h.parentNode;i.removeChild(h),i.normalize()}}return{x:f,y:g}};
+"use strict"
+
+/* DOM REFS
+=================================================================== */
+
+let $app
+let $editor
+let $caret
+let $modeBtn
+let $aboutBtnOpen
+let $aboutBtnClose
+let $autosaveLabel
+let $wordcountLabel
+let $aboutModal
+
+
+
+/* GLOBALS
+=================================================================== */
+
+let caretFrame
+let sustainCaret
+let caretTimer
+let autosaveTimer
+
+
+
+/* BINDINGS
+=================================================================== */
+
+window.addEventListener("load", () => {
+
+  // cache editor dom
+  $app = document.getElementById("app")
+  $editor = document.getElementById("editor")
+  $caret = document.getElementById("caret")
+  $modeBtn = document.getElementById("mode-btn")
+  $aboutBtnOpen = document.getElementById("about-modal-link")
+  $aboutBtnClose = document.getElementById("about-modal-close")
+  $autosaveLabel = document.getElementById("autosave-label")
+  $wordcountLabel = document.getElementById("wordcount-label")
+  $aboutModal = document.getElementById("about-modal")
+
+  // sync editor content between tabs
+  window.addEventListener("storage", e => {
+    pullEditor($editor, localStorage._c_txt)
+    pullTheme(localStorage._c_thm)
+  })
+
+  // on editor input
+  $editor.addEventListener("input", e => {
+    pushLocal("_c_txt", $editor.innerText)
+    maybeScroll($editor)
+    cycleAutosaveLabel($autosaveLabel) // faux save label update
+    updateWordcountLabel($wordcountLabel, $editor.innerText)
+    maybeRandPlaceholder($editor) // random placeholder
+  })
+
+  // editor keydown
+  $editor.addEventListener("keydown", e => {
+    handleCmds(e)
+    handleTabs(e) // insert actual tabs instead of default tabbing behavior
+    handleRets(e, $editor) // fixes line break weirdness in FF & Safari
+    showCaret($caret)
+  })
+
+  // editor keyup (empties editor when visually empty, so placeholder reappears)
+  $editor.addEventListener("keyup", e => maybeEmpty($editor))
+
+  // editor paste
+  $editor.addEventListener("paste", e => {
+    handlePaste(e) // insert clipboard content w/o styling
+    showCaret($caret)
+  })
+
+  // editor copy / cut (prevent copying of styles)
+  $editor.addEventListener('copy', e => handleCopyOrCut(e))
+  $editor.addEventListener('cut', e => handleCopyOrCut(e))
+
+  // editor focus
+  $editor.addEventListener("focus", e => {
+    $caret.hidden = false
+    moveCaret($caret)
+  })
+
+  // editor blur
+  $editor.addEventListener("blur", e => {
+    $caret.hidden = true
+    cancelAnimationFrame(caretFrame)
+  })
+
+  // mouse clicks
+  $editor.addEventListener("click", e => showCaret($caret))
+  $modeBtn.addEventListener("click", e => toggleTheme())
+  $aboutBtnOpen.addEventListener("click", e => showAboutModal($aboutModal))
+  $aboutBtnClose.addEventListener("click", e => hideAboutModal($aboutModal))
+
+  // start app
+  init()
+})
+
+
+
+/* INITIALIZATION
+=================================================================== */
+
+const init = () => {
+  // content persistance
+  if(!localStorage.getItem('_c_txt')) pushLocal("_c_txt", "") // setup new storage for entry
+  else pullEditor($editor, localStorage._c_txt) // load stored content into editor
+  if(!localStorage.getItem('_c_thm')) pushLocal("_c_thm", "day") // setup new storage for entry
+  else pullTheme(localStorage._c_thm) // set stored theme
+  // visual
+  maybeEmpty($editor)
+  $app.hidden = false
+  $editor.focus()
+  blinkCaret($caret) // setup the cursor for blinking
+  sustainCaret = false
+  $autosaveLabel.innerText = "SAVED " + time12()
+  updateWordcountLabel($wordcountLabel, $editor.innerText)
+  maybeRandPlaceholder($editor) // random placeholder
+  updateMetaThemeColor(localStorage._c_thm)
+}
+
+
+
+/* STORAGE
+=================================================================== */
+
+const pushLocal = (key, value) => localStorage.setItem(key, value)
+const pullTheme = (className) => {
+  document.body.className = className
+  if (className == "day")
+    $modeBtn.innerHTML = "NIGHT MODE"
+  else
+    $modeBtn.innerHTML = "DAY MODE"
+}
+const pullEditor = (el, textContent) => {
+  el.innerText = textContent
+  normalizeLinebreaks(el.innerText)
+}
+
+
+
+/* EDITOR OBJECTS
+=================================================================== */
+
+const moveCaret = () => {
+  $caret.style.left = getCaretCoords($editor).x - 1 + "px"
+  $caret.style.top = getCaretCoords($editor).y - 6 + "px"
+  if (document.getSelection().toString() == "")
+    $caret.hidden = false
+  else
+    $caret.hidden = true
+  caretFrame = requestAnimationFrame(moveCaret)
+}
+
+const blinkCaret = el => {
+  let blinkme = setInterval(() => {
+    if (el.hidden || sustainCaret) return
+    if (el.style.opacity == 1)
+      el.style.opacity = 0
+    else
+      el.style.opacity = 1
+  }, 570)
+}
+
+const showCaret = el => {
+  el.style.opacity = 1
+  sustainCaret = true
+  if (caretTimer != null) clearTimeout(caretTimer)
+  caretTimer = setTimeout(() => sustainCaret = false, 570)
+}
+
+const cycleAutosaveLabel = el => {
+  if (autosaveTimer != null) clearTimeout(autosaveTimer)
+  autosaveTimer = setTimeout(() => {
+    el.innerText = "SAVING..."
+    el.style.fontStyle = "italic"
+    setTimeout(() => {
+      el.innerText = "SAVED " + time12()
+      el.style.fontStyle = "normal"
+    }, 1200)
+  }, 650)
+}
+
+const updateWordcountLabel = (el, strContent) => {
+  let words = strContent.trim().split(/\s+/).length
+  if (strContent == "") words = 0
+  el.innerText = words + " WORDS"
+}
+
+const maybeRandPlaceholder = el => {
+  if (el.innerText != "") return
+  let placeholders = [
+    "And so it begins...",
+    "Happy typing...",
+    "It was a dark and stormy night...",
+    "Once upon a time...",
+    "It was the best of times, it was the worst of times...",
+    "It was all just a dream..."
+  ]
+  el.dataset.placeholder = placeholders[getRandomIntInclusive(0,placeholders.length-1)]
+}
+
+
+
+/* APP CONTROLS
+=================================================================== */
+
+const handleCmds = e => {
+  const k = e.keyCode
+  if (k < 65 || k > 90) return
+  const cmd = (e.metaKey ? "⌘" : "") + String.fromCharCode(k)
+  switch(cmd) {
+    case "⌘B": e.preventDefault(); break
+    case "⌘I": e.preventDefault(); break
+  }
+}
+
+const toggleTheme = () => {
+  if (document.body.className == "day") {
+    document.body.className = "night"
+    $modeBtn.innerHTML = "DAY MODE"
+    pushLocal("_c_thm", "night") // update storage
+  } else {
+    document.body.className = "day"
+    $modeBtn.innerHTML = "NIGHT MODE"
+    pushLocal("_c_thm", "day") // update storage
+  }
+  $editor.dataset.placeholder = "Oohhh... " + localStorage._c_thm + " mode!"
+  updateMetaThemeColor(localStorage._c_thm)
+}
+
+
+
+/* NORMALIZE CONTENTEDITABLE
+=================================================================== */
+
+const handleTabs = e => {
+  if(e.keyCode === 9) {
+    e.preventDefault();
+    document.execCommand("insertText", false, "     ");
+  }
+}
+
+const handleRets = (e, el) => {
+  if (e.keyCode === 13 && el.innerHTML == ""
+  && navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    e.preventDefault()
+    document.execCommand("insertHTML", false, "<br><br>")
+  }
+}
+
+const handlePaste = e => {
+  e.preventDefault()
+  let clipText = (e.originalEvent || e).clipboardData.getData('text/plain')
+  document.execCommand("insertText", false, clipText)
+  normalizeLinebreaks($editor.innerText)
+}
+
+const handleCopyOrCut = e => {
+  let clipText = (e.originalEvent || e).clipboardData.getData('text/plain')
+  e.clipboardData.setData('text/plain', clipText)
+}
+
+const normalizeLinebreaks = strContent => {
+  let strArr = strContent.split("")
+  for (let c = 0; c < strArr.length; c++) {
+    if (strArr[c] === "\\" && strArr[c+1] === "n") {
+      strArr[c] = "<b"
+      strArr[c+1] = "r>"
+    }
+  }
+  return strArr.join()
+}
+
+const maybeEmpty = el => {
+  if (el.innerText == "<br><br>" || el.innerText == "\n") el.innerText = ""
+}
+
+const maybeScroll = el => {
+  if(getCaretIndex(el) >= el.textContent.length)
+    scrollTo(0,document.body.scrollHeight);
+}
+
+
+
+/* ABOUT MODAL
+=================================================================== */
+const showAboutModal = el => el.hidden = false
+const hideAboutModal = el => el.hidden = true
+
+
+
+/* HELPERS
+=================================================================== */
+
+const getRandomIntInclusive = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const time12 = () => {
+  const d = new Date()
+  let h = d.getHours()
+  let m = d.getMinutes()
+  let t = h >= 12 ? "PM" : "AM"
+  h = h % 12
+  h = h ? h : 12
+  m = m < 10 ? "0" + m : m
+  return h + ":" + m + t
+}
+
+const updateMetaThemeColor = theme => {
+  let c
+  if (theme == "day") c = "#f7f7f6"
+  else if (theme == "night") c = '#1a1a19'
+  document.querySelector('meta[name=theme-color]').remove()
+  let meta = document.createElement('meta');
+  meta.name = "theme-color"
+  meta.content = c
+  document.getElementsByTagName('head')[0].appendChild(meta);
+}
+
+const getCaretIndex = el => {
+  let caretOffset = 0
+  if ((typeof window.getSelection != "undefined") && true) {
+    let range = window.getSelection().getRangeAt(0)
+    let preCaretRange = range.cloneRange()
+    preCaretRange.selectNodeContents(el)
+    preCaretRange.setEnd(range.endContainer, range.endOffset)
+    caretOffset = preCaretRange.toString().length
+  } else if ((typeof document.selection != "undefined"
+      && document.selection.type != "Control") && true) {
+    let textRange = document.selection.createRange()
+    let preCaretTextRange = document.body.createTextRange()
+    preCaretTextRange.moveToElementText(el)
+    preCaretTextRange.setEndPoint("EndToEnd", textRange)
+    caretOffset = preCaretTextRange.text.length
+  } return caretOffset
+}
+
+// INFO: stackoverflow.com/questions/6846230/coordinates-of-selected-text-in-browser-page
+const getCaretCoords = el => {
+  let sel = document.selection, range, rect
+  let x = 0, y = 0
+  if (sel) { // 1:
+    if (sel.type != "Control") {
+      range = sel.createRange()
+      range.collapse(true)
+      x = range.boundingLeft, y = range.boundingTop
+    }
+  } else if (window.getSelection) { // 2:
+    sel = window.getSelection()
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0).cloneRange()
+      if (range.getClientRects && el.innerText != "") { // if the editor is empty fall back to method 3
+        range.collapse(true)
+        if (range.getClientRects().length > 0){
+          rect = range.getClientRects()[0]
+          x = rect.left, y = rect.top
+        }
+      } if (x == 0 && y == 0) { // 3: fall back to inserting a temporary element
+        let span = document.createElement("span")
+        if (span.getClientRects) {
+          // span with zero-width characer has dimensions and position
+          span.appendChild( document.createTextNode("\u200b") )
+          range.insertNode(span)
+          rect = span.getClientRects()[0]
+          x = rect.left, y = rect.top
+          let spanParent = span.parentNode
+          spanParent.removeChild(span)
+          spanParent.normalize() // glue any broken text nodes back together
+        }
+      }
+    }
+  } return { x: x, y: y }
+}
