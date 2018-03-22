@@ -116,7 +116,7 @@ const init = () => {
   $editor.focus()
   blinkCaret($caret) // setup the cursor for blinking
   sustainCaret = false
-  $autosaveLabel.innerText = "SAVED " + time12()
+  $autosaveLabel.innerText = "SAVED "
   updateWordcountLabel($wordcountLabel, $editor.innerText)
   maybeRandPlaceholder($editor) // random placeholder
   updateMetaThemeColor(localStorage._c_thm)
@@ -178,7 +178,7 @@ const cycleAutosaveLabel = el => {
     el.innerText = "SAVING..."
     el.style.fontStyle = "italic"
     setTimeout(() => {
-      el.innerText = "SAVED " + time12()
+      el.innerText = "SAVED "
       el.style.fontStyle = "normal"
     }, 1200)
   }, 650)
@@ -300,17 +300,6 @@ const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const time12 = () => {
-  const d = new Date()
-  let h = d.getHours()
-  let m = d.getMinutes()
-  let t = h >= 12 ? "PM" : "AM"
-  h = h % 12
-  h = h ? h : 12
-  m = m < 10 ? "0" + m : m
-  return h + ":" + m + t
 }
 
 const updateMetaThemeColor = theme => {
