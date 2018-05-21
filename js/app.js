@@ -131,9 +131,9 @@ const pushLocal = (key, value) => localStorage.setItem(key, value)
 const pullTheme = (className) => {
   document.body.className = className
   if (className == "day")
-    $modeBtn.innerHTML = "DARK"
-  else
     $modeBtn.innerHTML = "LIGHT"
+  else
+    $modeBtn.innerHTML = "DARK"
 }
 const pullEditor = (el, textContent) => {
   el.innerText = textContent
@@ -221,11 +221,11 @@ const handleCmds = e => {
 const toggleTheme = () => {
   if (document.body.className == "day") {
     document.body.className = "night"
-    $modeBtn.innerHTML = "LIGHT"
+    $modeBtn.innerHTML = "DARK"
     pushLocal("_c_thm", "night") // update storage
   } else {
     document.body.className = "day"
-    $modeBtn.innerHTML = "DARK"
+    $modeBtn.innerHTML = "LIGHT"
     pushLocal("_c_thm", "day") // update storage
   }
   $editor.dataset.placeholder = "Oohhh... " + localStorage._c_thm + " mode!"
