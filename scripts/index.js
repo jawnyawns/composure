@@ -27,7 +27,7 @@
   	if (event.keyCode === 9) {
   		manualTab($editor, event)
   	} else {
-  		scrollToBottom($editor)
+  		inputScroll($editor)
   	}
     storeText($editor, "composure_text")
   }
@@ -44,6 +44,13 @@
 
   function scrollToBottom(elem) {
     elem.scrollTop = elem.scrollHeight
+  }
+
+  // Scroll to bottom of INPUT, when caret is near the end of the INPUT content
+  function inputScroll(input) {
+    if (input.selectionEnd >= input.value.length * 0.9) {
+      scrollToBottom(input)
+    }
   }
 
   // Forces tab press on EVENT to insert tab character into INPUT
