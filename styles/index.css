@@ -63,7 +63,7 @@ body {
   bottom: 4px;
   right: 4px;
 
-  background-image: url('/images/moon.svg');
+  background-image: url('/images/moon.svg'), url('/images/sun.svg'); /* Pre-load the dark button image */
   background-color: rgba(0, 0, 0, 0);
   background-position: center center;
   background-size: 65%;
