@@ -16,6 +16,7 @@
 
   window.addEventListener("load", onLoad)
   $editor.addEventListener("keydown", onKeydown)
+  $editor.addEventListener("input", onInput)
   $button.addEventListener("click", toggleDark)
 
   function onLoad() {
@@ -26,9 +27,11 @@
   function onKeydown(event) {
   	if (event.keyCode === 9) {
   		manualTab($editor, event)
-  	} else {
-  		inputScroll($editor)
   	}
+  }
+
+  function onInput(event) {
+    inputScroll($editor)
     storeText($editor, "composure_text")
   }
 
