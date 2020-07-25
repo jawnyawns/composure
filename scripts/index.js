@@ -80,7 +80,7 @@
   // if that value is not the empty string.
   function restoreNonEmptyText(input, key) {
     const storedText = window.localStorage.getItem(key)
-    if (storedText != "") {
+    if (storedText) {
       input.value = storedText
     }
   }
