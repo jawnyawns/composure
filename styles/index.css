@@ -14,25 +14,18 @@ body {
 
 
 
-@font-face {
-  font-family: 'Duospace';
-  src: url('/fonts/iAWriterDuospace-Regular.woff2');
-}
-
-
-
 .app {
-  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
-  font-size: 1rem;
-  color: #191919;
-  background: #F1F3F4;
+  font-family: monospace;
+  font-size: 16px;
+  color: #282a2e;
+  background-color: #fafbfb;
 }
 
 
 
 .dark {
-  color: #DFDFDF;
-  background: #2B2B2C;
+  color: #fafbfb;
+  background-color: #282a2e;
 }
 
 
@@ -46,7 +39,7 @@ body {
   color: inherit;
   font-family: inherit;
   font-size: inherit;
-  line-height: 1.5;
+  line-height: 1.65;
 
   display: block;
   width: 100%;
@@ -62,29 +55,29 @@ body {
 
 
 
-.button {
+.theme-btn {
   border: none;
   outline: none;
 
   position: fixed;
-  bottom: 3px;
-  right: 3px;
+  bottom: 0;
+  right: 0;
+
+  background: none;
+  padding: 8px;
+  margin: 4px;
+}
+
+.theme-btn-icon {
+  background-color: #282a2e;
+  padding: 4px;
   border-radius: 100%;
-
-  background-image: url('/images/moon.svg'), url('/images/sun.svg'); /* Pre-load the dark button image */
-  background-size: 65%, 0%; /* Hide the pre-loaded image. */
-  background-color: #F1F3F4;
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding: 1rem;
 }
 
-.dark .button {
-  background-image: url('/images/sun.svg');
-  background-color: #2B2B2C;
-  background-size: 63%;
+.dark .theme-btn-icon {
+  background-color: #fafbfb;
 }
 
-.button:hover {
+.theme-btn:hover {
   cursor: pointer;
 }

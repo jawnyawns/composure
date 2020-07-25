@@ -7,17 +7,16 @@
 
   const $app = document.querySelector(".app")
   const $editor = $app.querySelector(".editor")
-  const $button = $app.querySelector(".button")
-  const $theme = document.querySelector("meta[name=theme-color]")
+  const $themeBtn = $app.querySelector(".theme-btn")
 
   //
-  // Event listeners and handlers.
+  // All app interaction events.
   //
 
   window.addEventListener("load", onWindowLoad)
   $editor.addEventListener("keydown", onEditorKeydown)
   $editor.addEventListener("input", onEditorInput)
-  $button.addEventListener("click", onButtonClick)
+  $themeBtn.addEventListener("click", onButtonClick)
 
   function onWindowLoad() {
     restoreNonEmptyText($editor, "composure_text")
@@ -43,7 +42,6 @@
 
   function toggleDark() {
     $app.classList.toggle("dark")
-    $theme.content = $theme.content === "#F1F3F4" ? "#2B2B2C" : "#F1F3F4"
     $editor.focus()
   }
 
@@ -51,15 +49,15 @@
   // Various behaviors, decoupled from everything.
   //
 
-  function scrollToBottom(elem) {
-    elem.scrollTop = elem.scrollHeight
-  }
-
   // Scroll to bottom of INPUT, when caret is near the end of the INPUT content
   function inputScroll(input) {
     if (input.selectionEnd >= input.value.length * 0.9) {
       scrollToBottom(input)
     }
+  }
+
+  function scrollToBottom(elem) {
+    elem.scrollTop = elem.scrollHeight
   }
 
   // Forces tab press on EVENT to insert tab character into INPUT
