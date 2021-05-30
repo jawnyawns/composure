@@ -40,7 +40,7 @@ function save(elem, storage) {
 function insertTab(elem, event) {
     if (event.keyCode === 9) {
         event.preventDefault()
-    	insertAtCaret(elem, '\t')
+        insertAtCaret(elem, '\t')
 	}
 }
 
