@@ -1,115 +1,69 @@
-"use strict";
+const STORAGE_KEY = "composure_text"
 
-(function () {
-  //
-  // Cache DOM elements.
-  //
+//
+// Main: define events and correspoinding state transitions.
+//
 
-  const $app = document.querySelector(".app")
-  const $editor = $app.querySelector(".editor")
-  const $themeBtn = $app.querySelector(".theme-btn")
+const $editor = document.querySelector("#editor")
 
-  //
-  // All app interaction events.
-  //
+window.addEventListener("load", onLoad)
+$editor.addEventListener("keydown", onKeydown)
+$editor.addEventListener("input", onInput)
 
-  window.addEventListener("load", onWindowLoad)
-  $editor.addEventListener("keydown", onEditorKeydown)
-  $editor.addEventListener("input", onEditorInput)
-  $themeBtn.addEventListener("click", onButtonClick)
+function onLoad(event) {
+    load($editor, window.localStorage)
+    resetCaret($editor)
+}
 
-  function onWindowLoad() {
-    restoreNonEmptyText($editor, "composure_text")
-    setCaretPos($editor, 0)
-    restoreTheme($app.classList.contains("dark") ? "dark" : "light", "composure_theme", toggleDark)
-  }
+function onKeydown(event) {
+    insertTab($editor, event)
+}
 
-  function onEditorKeydown(event) {
-  	if (event.keyCode === 9) {
-  		manualTab($editor, event)
-  	}
-  }
+function onInput(event) {
+    save($editor, window.localStorage)
+    autoScroll($editor)
+}
 
-  function onEditorInput(event) {
-    inputScroll($editor)
-    storeText($editor, "composure_text")
-  }
+//
+// Business functions: represent state transitions to perform upon certain events.
+// Only mutates passed-in elements.
+//
 
-  function onButtonClick(event) {
-    toggleDark()
-    storeTheme($app.classList.contains("dark"), "composure_theme")
-  }
+function load(elem, storage) {
+    elem.value = storage.getItem(STORAGE_KEY)
+}
 
-  function toggleDark() {
-    $app.classList.toggle("dark")
-    $editor.focus()
-  }
+function save(elem, storage) {
+    storage.setItem(STORAGE_KEY, elem.value)
+}
 
-  //
-  // Various behaviors, decoupled from everything.
-  //
+function insertTab(elem, event) {
+    if (event.keyCode === 9) {
+        event.preventDefault()
+    	insertAtCaret(elem, '\t')
+	}
+}
 
-  // Scroll to bottom of INPUT, when caret is near the end of the INPUT content
-  function inputScroll(input) {
-    if (input.selectionEnd >= input.value.length * 0.9) {
-      scrollToBottom(input)
+function resetCaret(elem) {
+    elem.selectionEnd = 0
+}
+
+function autoScroll(elem) {
+    if (elem.selectionEnd == elem.value.length) {
+        scrollToEnd(elem)
     }
-  }
+}
 
-  function scrollToBottom(elem) {
+//
+// Utility functions: generalized logic.
+// Only mutates passed-in elements.
+//
+
+function insertAtCaret(elem, text) {
+    elem.value = elem.value.slice(0, elem.selectionStart) + text + elem.value.slice(elem.selectionEnd)
+    elem.selectionStart = elem.selectionEnd = elem.selectionStart + text.length
+}
+
+function scrollToEnd(elem) {
     elem.scrollTop = elem.scrollHeight
-  }
-
-  // Forces tab press on EVENT to insert tab character into INPUT
-  // at the current caret position instead of changing focus away.
-  function manualTab(input, event) {
-  	event.preventDefault()
-  	insertAtCaret(input, "\t")
-  }
-
-  // Insert TEXT into INPUT at the current caret position.
-  function insertAtCaret(input, text) {
-    const value = input.value
-    const start = input.selectionStart
-    const end = input.selectionEnd
-    input.value = value.slice(0, start) + text + value.slice(end)
-    input.selectionStart = input.selectionEnd = start + text.length
-  }
-
-  // Sets INPUT.value to the value locally stored at KEY,
-  // if that value is not the empty string.
-  function restoreNonEmptyText(input, key) {
-    const storedText = window.localStorage.getItem(key)
-    if (storedText) {
-      input.value = storedText
-    }
-  }
-
-  // Locally store the INPUT.value with KEY.
-  function storeText(input, key) {
-    window.localStorage.setItem(key, input.value)
-  }
-
-  // Use FN to apply the locally stored theme at KEY,
-  // given the current THEME.
-  function restoreTheme(currentTheme, key, fn) {
-    const storedTheme = window.localStorage.getItem(key) || currentTheme
-    if (storedTheme != currentTheme) {
-      fn()
-    }
-  }
-
-  // Locally store the THEME at KEY.
-  function storeTheme(isDark, key) {
-    if (isDark) {
-      window.localStorage.setItem(key, "dark")
-    } else {
-      window.localStorage.setItem(key, "light")
-    }
-  }
-
-  // Moves the INPUT's caret to position POS.
-  function setCaretPos(input, pos) {
-    input.selectionEnd = pos
-  }
-}());
+}
