@@ -1,5 +1,5 @@
 ## Development
 
 ```
-python3 -m http.server -d ..
+python3 -m http.server
 ```
