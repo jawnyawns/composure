@@ -3,11 +3,11 @@ const STORAGE_KEY = "composure_text"
 
 const $editor = document.querySelector("#editor")
 
-window.addEventListener("load", onLoad)
+window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 $editor.addEventListener("keydown", onKeydown)
 $editor.addEventListener("input", onInput)
 
-function onLoad(event) {
+function onDOMContentLoaded(event) {
   loadText($editor, window.localStorage)
   resetCaret($editor)
 }
